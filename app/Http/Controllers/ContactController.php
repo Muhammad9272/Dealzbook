@@ -75,7 +75,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
         {
-
+            $gs=Generalsetting::firstOrFail();
             $validatedData = $request->validate([
                 'first_name' => 'required',
                 'last_name' => 'required',
@@ -83,7 +83,7 @@ class ContactController extends Controller
                 'email' => 'required',
                 'subject' => 'required',
                 'message' => 'required',
-                'g-recaptcha-response' => 'required|captcha'
+                // 'g-recaptcha-response' => 'required|captcha'
             ]);
 
             $contact = new Contact;

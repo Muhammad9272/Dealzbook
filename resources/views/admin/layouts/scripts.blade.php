@@ -10,7 +10,8 @@
          var area2;
 </script>
 
-
+<script src="{{ asset('assets/admin_assets/pdf/pdf.js')}}"></script>
+           <script src="{{ asset('assets/admin_assets/pdf/pdf.worker.js')}}"></script>
 
 <script src="{{ asset('assets/admin_assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/admin_assets/global/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>

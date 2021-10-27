@@ -124,17 +124,35 @@ class CatalogController extends Controller
             'country' => 'required',
             'branches' => 'required',
             'description'=> 'required',
-            'arabic_description'=> 'required',
+            'arabic_description'=> 'required',            
+            'cover_photo'=>'required_if:addMediaRadios,11',
+            'pdfFile'=>'required_if:addMediaRadios,22',
+            
             // 'page_description' => 'required',
             // 'page_arabic_description' => 'required',
-            'cover_photo'=>'required'
                 ];
+        $customs = ['cover_photo.required_if' => 'Cover Photo Required',
+                    'pdfFile.required_if' => ' Pdf file Required'];
 
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($request->all(), $rules,$customs);
 
         if ($validator->fails()) {
           return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
         }
+        
+        // if($request->addMediaRadios=="11"){
+        //     $rules = [
+        //         'cover_photo'=>'required'
+        //         ];
+
+        //     $validator = Validator::make($request->all(), $rules);
+
+        //     if ($validator->fails()) {
+        //       return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
+        //     }
+
+
+
         $catalog = new Catalog;
 
         //name
@@ -165,6 +183,7 @@ class CatalogController extends Controller
         $catalog->store_id = $request->store;
         $catalog->city_id = $request->city;
         $catalog->country_id = $request->country;
+        $catalog->link = $request->link;
         //check whether the catalog is
         //marked as featured
         //if yes, then save it
@@ -174,20 +193,20 @@ class CatalogController extends Controller
         // }
 
 
-        $attachments=[];  
-        if($request->hasFile('attachments')){    
-            foreach ($request->attachments as $file) {   
+        // $attachments=[];  
+        // if($request->hasFile('attachments')){    
+        //     foreach ($request->attachments as $file) {   
 
-               $name = time().$file->getClientOriginalName();
-               $file->move('assets/pdfs/',$name);           
-               $attachments[] = $name;
+        //        $name = time().$file->getClientOriginalName();
+        //        $file->move('assets/pdfs/',$name);           
+        //        $attachments[] = $name;
             
-            }
-            $catalog->attachments =json_encode($attachments);
-        }
-        else{
-            $catalog->attachments=null;
-        }
+        //     }
+        //     $catalog->attachments =json_encode($attachments);
+        // }
+        // else{
+        //     $catalog->attachments=null;
+        // }
 
         
         $catalog->save();
@@ -215,28 +234,72 @@ class CatalogController extends Controller
 
         // $catalog->imagesStore()->sync($images);
  
-
-        $image = new Image;
-        $image->image = $request->cover_photo;
-        $image->featured = true;
-        $image->catalog_id=$catalog->id;
-        $response = $catalog->images()->save($image);
-
         $models=[];
-        $index=0;
-        $images=explode(',',$request->catalog_images);
-        if(count($images)>0 && $images[0]!=""){
-            foreach($images as $image){
-                $values['image']=$image;
-                $values['imageable_id']=$catalog->id;
-                $values['imageable_type']='App\Catalog';         
-                $index++;
-                $models[]=$values;
-                
-            }
-           $catalog->imagesStore()->createMany($models);
-        }
+        if($request->addMediaRadios=="11"){
+            $index=0;
+            $images=explode(',',$request->catalog_images);
+            if(count($images)>0 && $images[0]!=""){
 
+                foreach($images as $image){
+                    $values['image']=$image;
+                    $values['imageable_id']=$catalog->id;
+                    $values['imageable_type']='App\Catalog';         
+                    $index++;
+                    $models[]=$values;
+                    
+                }
+               $catalog->imagesStore()->createMany($models);
+            }
+
+            $image = new Image;
+            $image->image = $request->cover_photo;
+            $image->featured = true;
+            $image->catalog_id=$catalog->id;
+            $response = $catalog->images()->save($image);
+
+            
+            $catalog->attachments=null;
+            $catalog->update();
+           
+
+        }
+        
+        else if($request->addMediaRadios=="22"){
+
+            if($request->pdfs && $request->pdfs!='[]'){
+                $file = $request->file('pdfFile');
+                $name = time().$file->getClientOriginalName();
+                $file->move('assets/pdfs/',$name);
+                $catalog->attachments = $name;
+                $catalog->update();
+
+                foreach($request->pdfs as $key=>$image){     
+                     
+                    $image = str_replace('data:image/jpeg;base64,', '', $image);
+                    $image = str_replace(' ', '+', $image);
+
+                    $image_name = $key.time(). '.png'; 
+                    $path = public_path().'/assets/images/dealzbook/'. $image_name;
+                    $path1 = url('/').'/assets/images/dealzbook/'. $image_name;
+                    file_put_contents($path,base64_decode($image));
+                    if($key==0){
+                        $image = new Image;
+                        $image->image = $path1;
+                        $image->featured = true;
+                        $image->catalog_id=$catalog->id;
+                        $response = $catalog->images()->save($image);
+                    }
+                    else{
+                        $values['image']=$path1;
+                        $values['imageable_id']=$catalog->id;
+                        $values['imageable_type']='App\Catalog';         
+                        $models[]=$values;
+                    }
+                    
+                }
+                $catalog->imagesStore()->createMany($models);
+            }
+        }
 
 
 
@@ -287,8 +350,11 @@ class CatalogController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$id)
-    {
-          //--- Validation Section
+    {  
+        // $path = public_path().'/assets/images/dealzbook/';
+       
+        //dd($request->pdfs);
+         //--- Validation Section
         $rules = [
             'name' => 'required|max:500',
             'arabic_name' => 'required|max:255',
@@ -348,41 +414,42 @@ class CatalogController extends Controller
         // }
 
         $catalog->store_id = $request->store;
+        $catalog->link = $request->link;
         $catalog->city_id = $request->city;
         $catalog->country_id = $request->country;
 
         // Add & Update pdfs
-            $attachments=[];  
-            if(!empty($catalog->attachments) && !is_null($catalog->attachments)){
-                foreach (json_decode($catalog->attachments) as  $key => $file){
+            // $attachments=[];  
+            // if(!empty($catalog->attachments) && !is_null($catalog->attachments)){
+            //     foreach (json_decode($catalog->attachments) as  $key => $file){
 
-                    if( !is_null($request->old) && in_array($key, $request->old) ){
-                        $attachments[]=$file;
-                    }
-                    else{
-                         if (file_exists(public_path().'/assets/pdfs/'.$file)) {
-                             unlink(public_path().'/assets/pdfs/'.$file);
-                         }
-                    }
-                }
-            }
+            //         if( !is_null($request->old) && in_array($key, $request->old) ){
+            //             $attachments[]=$file;
+            //         }
+            //         else{
+            //              if (file_exists(public_path().'/assets/pdfs/'.$file)) {
+            //                  unlink(public_path().'/assets/pdfs/'.$file);
+            //              }
+            //         }
+            //     }
+            // }
 
-            if($request->attachments){
-                foreach($request->attachments as $file){
+            // if($request->attachments){
+            //     foreach($request->attachments as $file){
 
-                   $name = time().$file->getClientOriginalName();
-                   $file->move('assets/pdfs/',$name);           
-                   $attachments[] = $name;
-                }
+            //        $name = time().$file->getClientOriginalName();
+            //        $file->move('assets/pdfs/',$name);           
+            //        $attachments[] = $name;
+            //     }
 
-            }
+            // }
 
-            $catalog->attachments = json_encode($attachments);
+            // $catalog->attachments = json_encode($attachments);
 
-            // if empty pdfs
-            if ( $catalog->attachments == "[]"  ) {
-                $catalog->attachments =null;
-            }
+            // // if empty pdfs
+            // if ( $catalog->attachments == "[]"  ) {
+            //     $catalog->attachments =null;
+            // }
 
         // Add & Update pdfs Ends
 
@@ -422,32 +489,92 @@ class CatalogController extends Controller
 
         // }
         
-        if($request->cover_photo){
+        
+        // if($request->catalog_images){
+        //     foreach ($catalog->images()->where("featured",'!=',1)->get() as $gal) {
+        //         $gal->delete();
+        //     }
+        //  }
 
-            $featured=$catalog->images()->where("featured",1)->first();
-            $featured->image=$request->cover_photo;
-            $featured->update();
+        $models=[];
+        if($request->addMediaRadios=="11"){
+            $index=0;
+            $images=explode(',',$request->catalog_images);
+            if(count($images)>0 && $images[0]!=""){
 
-        } 
-        if($request->catalog_images){
+                foreach ($catalog->images()->where("featured",'!=',1)->get() as $gal) {
+                        $gal->delete();
+                    }
+                foreach($images as $image){
+                    $values['image']=$image;
+                    $values['imageable_id']=$catalog->id;
+                    $values['imageable_type']='App\Catalog';         
+                    $index++;
+                    $models[]=$values;
+                    
+                }
+               $catalog->imagesStore()->createMany($models);
+            }
+
+            if($request->cover_photo){
+                $featured=$catalog->images()->where("featured",1)->first();
+                $featured->image=$request->cover_photo;
+                $featured->update();
+            } 
+            if($catalog->attachments != null)
+            {  
+                if (file_exists(public_path().'/assets/pdfs/'.$catalog->attachments)) {
+                    unlink(public_path().'/assets/pdfs/'.$catalog->attachments);
+                }                
+            }
+            $catalog->attachments=null;
+            $catalog->update();
+
+        }
+        
+        else if($request->addMediaRadios=="22" && $request->pdfs && $request->pdfs!='[]'){
+            $file = $request->file('pdfFile');
+            $name = time().$file->getClientOriginalName();
+            $file->move('assets/pdfs/',$name);
+            if($catalog->attachments != null)
+            {
+                if (file_exists(public_path().'/assets/pdfs/'.$catalog->attachments)) {
+                    unlink(public_path().'/assets/pdfs/'.$catalog->attachments);
+                }
+            }
+            $catalog->attachments = $name;
+            $catalog->update();
+
+
             foreach ($catalog->images()->where("featured",'!=',1)->get() as $gal) {
                 $gal->delete();
             }
-         }
-        $models=[];
-        $index=0;
-        $images=explode(',',$request->catalog_images);
-        if(count($images)>0 && $images[0]!=""){
-            foreach($images as $image){
-                $values['image']=$image;
-                $values['imageable_id']=$catalog->id;
-                $values['imageable_type']='App\Catalog';         
-                $index++;
-                $models[]=$values;
+            foreach($request->pdfs as $key=>$image){     
+                 
+                $image = str_replace('data:image/jpeg;base64,', '', $image);
+                $image = str_replace(' ', '+', $image);
+
+                $image_name = $key.time(). '.png'; 
+                $path = public_path().'/assets/images/dealzbook/'. $image_name;
+                $path1 = url('/').'/assets/images/dealzbook/'. $image_name;
+                file_put_contents($path,base64_decode($image));
+                if($key==0){
+                     $featured=$catalog->images()->where("featured",1)->first();
+                     $featured->image=$path1;
+                     $featured->update();
+                }
+                else{
+                    $values['image']=$path1;
+                    $values['imageable_id']=$catalog->id;
+                    $values['imageable_type']='App\Catalog';         
+                    $models[]=$values;
+                }
                 
             }
-           $catalog->imagesStore()->createMany($models);
+            $catalog->imagesStore()->createMany($models);
         }
+        
+        //dd($request->pdfs);
 
         //update the page description
         // $page = $catalog->page;

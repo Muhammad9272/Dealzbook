@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', ': '.  $blog->seoTags->title  )
+@section('title', '— '.  $blog->seoTags->title  )
 @section('description', $blog->seoTags->description  )
 
 @section('content')
@@ -148,7 +148,7 @@
     <!-- advertisements end -->
 
         {{--        ===================== popular blog posts =================--}}
-        <h2 class="d-none d-sm-block lineBreaker @if(session('locale') == 'ar') textAlignRight @endif">{{trans('index.the_most_popular_catalogs')}}</h2>
+        <h2 class="d-none d-sm-block lineBreaker @if(session('locale') == 'ar') textAlignRight @endif">{{trans('index.the_most_popular_blogs')}}</h2>
         <h2 class="d-block d-sm-none textAlignCenter lineBreaker @if(session('locale') == 'ar') textAlignRight @endif">{{trans('index.the_most_popular_blogs')}}</h2>
         
         <div class="row">

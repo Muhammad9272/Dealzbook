@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', ': Blog')
+@section('title', '— Blog')
 
 @section('content')
 

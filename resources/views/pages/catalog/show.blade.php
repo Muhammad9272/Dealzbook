@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', ': '.  $catalog->seoTags->title  )
+@section('title', '— '.  $catalog->seoTags->title  )
 @section('description', $catalog->seoTags->description  )
 @section('content')
 <script type="text/javascript" src="{{ asset('js/3d-flip-book/js/libs/jquery.min.js') }}"></script>
@@ -205,7 +205,17 @@
                      @endif
                   </div>
                </div>
-               @if( $catalog->attachments && count(json_decode($catalog->attachments) ))
+               @if( $catalog->link )
+               <div class="row">
+                  <div class="col-md-12 pdfdv">
+                     
+                      <li class="pdf-ls" style=""><a href="{{$catalog->link}}"> <i class="fa fa-link mt-5" aria-hidden="true"></i> &nbsp; Visit Catalog </a></li>
+                     
+                  </div>
+               </div>
+               @endif
+
+               {{-- @if( $catalog->attachments && count(json_decode($catalog->attachments) ))
                <div class="row">
                   <div class="col-md-12 pdfdv">
                       @foreach(json_decode($catalog->attachments) as $key=>$attachment)
@@ -213,7 +223,7 @@
                       @endforeach
                   </div>
                </div>
-               @endif
+               @endif --}}
 
             </div>
          </div>
@@ -605,7 +615,16 @@
                      @endif
                   </div>
                </div>
-               @if( $catalog->attachments && count(json_decode($catalog->attachments) ))
+               @if( $catalog->link )
+               <div class="row">
+                  <div class="col-md-12 pdfdv">
+                     
+                      <li class="pdf-ls" style=""><a href="{{$catalog->link}}"> <i class="fa fa-link mt-5" aria-hidden="true"></i> &nbsp; Visit Catalog </a></li>
+                     
+                  </div>
+               </div>
+               @endif
+               {{-- @if( $catalog->attachments && count(json_decode($catalog->attachments) ))
                <div class="row">
                   <div class="col-md-12 pdfdv">
                       @foreach(json_decode($catalog->attachments) as $key=>$attachment)
@@ -613,7 +632,7 @@
                       @endforeach
                   </div>
                </div>
-               @endif
+               @endif --}}
 
 
             </div>

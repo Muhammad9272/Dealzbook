@@ -5,7 +5,14 @@
             <script src="{{ asset('assets/admin_assets/pages/scripts/components-bootstrap-select.min.js')}}" type="text/javascript"></script>
 
             <link href="{{ asset('assets/admin_assets/gallery/image-uploader.css')}}" rel="stylesheet" type="text/css" />
-
+            <style type="text/css">
+                canvas{
+                    display: none;
+                }
+                .d-done{
+                      display: none;
+                }
+            </style>
            @include('admin.layouts.modal-scripts')   
 
 
@@ -14,7 +21,7 @@
 
             <!-- BEGIN FORM-->
             <div class="gocover" style="background: url({{asset('assets/images/'.$gs->admin_loader)}}) no-repeat scroll center center rgba(45, 45, 45, 0.5);"></div>
-            <form id="geniusformdata" action="{{ route('admin-catalogs-store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+            <form id="geniusformdata" action="{{ route('admin-catalogs-store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal formcatalog">
                {{csrf_field()}}
                @include('includes.admin.form-both')
                 <div class="row">
@@ -233,6 +240,13 @@
                         </div>                        
                     </div> 
 
+                    <div class="form-group col-md-6">
+                        <label class="col-md-3 control-label" >Link</label>
+                        <div class="col-md-8 d-inline-flex">
+                              <input type="text" class="form-control"  name="link">                           
+                        </div>                        
+                    </div>
+
 
                 </div>
                 <hr>
@@ -240,47 +254,74 @@
                     <div class="lang-head">
                             <h3>Media</h3>
                     </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                                <label class="col-md-3 control-label">Cover Photo *</label>
-                                <div class="col-md-7">
-                                    <div class="fileinput fileinput-new" data-provides="fileinput">
-                                        <div class="fileinput-new thumbnail">
-                                            <img id="profile-photo-preview"  src="{{'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'}}" alt="" /> </div>
-                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
-                                        <div>
-                                            <span class="btn default btn-file" onclick="filemanager.selectFile('profile-photo')">
-                                                <span class="fileinput-new" > Select image </span>
-                                                <span class="fileinput-exists"> Change </span>
-                                                <input id="profile-photo" type="text" name="cover_photo" > 
-                                            </span>
-                                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
-                                        </div>
-                                    </div>                                   
-                                </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Add Media Using</label>
+                        <div class="col-md-9">
+                            <div class="mt-radio-inline">
+                                <label class="mt-radio">
+                                    <input type="radio" name="addMediaRadios" id="addmediaradio1" value="11" checked=""> Photos
+                                    <span></span>
+                                </label>
+                                <label class="mt-radio">
+                                    <input type="radio" name="addMediaRadios" id="addmediaradio2" value="22" > Pdf
+                                    <span></span>
+                                </label>
                             </div>
-                    </div>
-                    <div class="col-md-12">
-
-                        <div class="form-group image-uploader">
-                             <label class="col-md-3 control-label">Cover Photo *
-                                <br>
-                                <div class="gallery-upl" onclick="filemanager.bulkSelectFile('myBulkSelectCallback')">
-                                    <span >
-                                        Upload Gallery
-                                    </span>
-                                    <input type="hidden" name="catalog_images" id="galleryimgval">
-                                </div>
-                             </label>
-                            <div class="col-md-8  "  >
-                                <div class="img-box uploaded" id="img-gallery">
-                                    <h3> Upload Gallery </h4>
-                                </div>                                    
-                            </div>
-
                         </div>
                     </div>
-                    <div class="col-md-12 mb-20">
+                    <div class="addmedia1">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                    <label class="col-md-3 control-label">Cover Photo *</label>
+                                    <div class="col-md-7">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="fileinput-new thumbnail">
+                                                <img id="profile-photo-preview"  src="{{'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'}}" alt="" /> </div>
+                                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                                            <div>
+                                                <span class="btn default btn-file" onclick="filemanager.selectFile('profile-photo')">
+                                                    <span class="fileinput-new" > Select image </span>
+                                                    <span class="fileinput-exists"> Change </span>
+                                                    <input id="profile-photo" type="text" name="cover_photo" > 
+                                                </span>
+                                                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                            </div>
+                                        </div>                                   
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-md-12">
+
+                            <div class="form-group image-uploader">
+                                 <label class="col-md-3 control-label">
+                                    <br>
+                                    <div class="gallery-upl" onclick="filemanager.bulkSelectFile('myBulkSelectCallback')">
+                                        <span >
+                                            Upload Gallery
+                                        </span>
+                                        <input type="hidden" name="catalog_images" id="galleryimgval">
+                                    </div>
+                                 </label>
+                                <div class="col-md-8  "  >
+                                    <div class="img-box uploaded" id="img-gallery">
+                                        <h3> Upload Gallery </h4>
+                                    </div>                                    
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="addmedia2 d-done">
+                        <div class="col-md-12 mb-20">      
+                            <div class="form-group">                 
+                                <label class="col-md-3 control-label" >Add PDfs</label>
+                                <div class="col-md-8 control-label"  >
+                                         <input id='pdf' type='file' name="pdfFile" accept="application/pdf" />                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- <div class="col-md-12 mb-20">
                         <div class="form-group image-uploader">
                            <label class="col-md-3 control-label" >Add PDfs</label>
                             <div class="col-md-8"  >
@@ -290,7 +331,7 @@
                                   </div>                                            
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
 
@@ -306,6 +347,20 @@
              <script type="text/javascript" src="{{asset('assets/admin_assets/gallery/image-uploader.min.js')}}"></script>
 
              <script>
+                
+                $(document).ready(function(){
+  
+                    $('input[type=radio][name=addMediaRadios]').change(function() {
+                        if (this.value == 11) {
+                            $('.addmedia1').removeClass('d-done');
+                            $('.addmedia2').addClass('d-done');
+                        }else if (this.value == 22) {
+                            $('.addmedia1').addClass('d-done');
+                            $('.addmedia2').removeClass('d-done');
+                        }
+                    });
+              
+                });
 
                 $(function () {
 
@@ -321,4 +376,62 @@
                 });
 
             </script>
+
+            <script type="text/javascript">    
+    var convasdata=[];
+    PDFJS.disableWorker = true;
+
+    var pdf = document.getElementById('pdf');
+    pdf.onchange = function(ev) {
+        if (file = document.getElementById('pdf').files[0]) {
+            fileReader = new FileReader();
+            fileReader.onload = function(ev) {
+              // console.log(ev);
+              PDFJS.getDocument(fileReader.result).then(function getPdfHelloWorld(pdf) {
+
+                //console.log(pdf.numPages);
+                for (var vrt = 1; vrt <= pdf.numPages; vrt++){
+                    var canvas=document.createElement("canvas");
+                    canvas.setAttribute('id','canvas'+vrt);
+                    document.body.appendChild(canvas);
+
+                    var input=document.createElement("input");
+                    input.setAttribute('id','input'+vrt);
+                    input.setAttribute('name','pdfs[]');
+                     input.setAttribute('type','hidden');
+                    document.body.appendChild(input);
+                    const menu = document.querySelector('.formcatalog');
+                    menu.appendChild(input);
+
+                    geturl(pdf,vrt);                
+                 }   
+                 console.log(convasdata);
+              }, function(error){
+                console.log(error);
+              });
+            };
+            fileReader.readAsArrayBuffer(file);
+        }
+    }
+
+    function geturl(pdf,i) {
+        // console.log(i);
+        pdf.getPage(i).then(function getPageHelloWorld(page) {
+          var scale = 1.5;
+          var viewport = page.getViewport(scale);
+           
+          var canvas = document.getElementById('canvas'+i);
+
+          var context = canvas.getContext('2d');
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;                  
+          // Render PDF page into canvas context                 
+          var task = page.render({canvasContext: context, viewport: viewport})
+          task.promise.then(function(){
+            convasdata.push(canvas.toDataURL('image/jpeg'));
+            document.getElementById('input'+i).value=canvas.toDataURL('image/jpeg');
+          });
+        });
+    }
+  </script>
 

@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', ': '.  $store->seoTags->title  )
+@section('title', '— '.  $store->seoTags->title  )
 @section('description', $store->seoTags->description  )
 
 @section('pagelevel_scripts')

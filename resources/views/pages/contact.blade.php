@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', ': Contact Us')
+@section('title', '— Contact Us')
 
 <script src="/js/jquery.js" ></script>
 
@@ -12,7 +12,7 @@ $(document).ready(function() {
 </script>
  --}}
 @section('content')
-    {!! NoCaptcha::renderJs() !!}
+    {{-- {!! NoCaptcha::renderJs() !!} --}}
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
     {{-- ================================================= largers screens ============================================ --}}
@@ -128,7 +128,7 @@ $(document).ready(function() {
                                 <span class="fil-d fa fa-download"> </span>
                             </div>
 
-                            {!! NoCaptcha::display() !!}
+                            {{-- {!! NoCaptcha::display() !!} --}}
                             <div class="forum-group submitButton">
                                 <button id="contactUsSubmit" class="contactUsSubmit" type="submit">{{ trans('index.submit') }}</button>
                             </div>
@@ -171,7 +171,7 @@ $(document).ready(function() {
                                 <span class="fil-d fa fa-download"> </span>
                             </div>
 
-                            {!! NoCaptcha::display() !!}
+                            {{-- {!! NoCaptcha::display() !!} --}}
                             <div class="forum-group submitButton">
                                 <button id="contactUsSubmit" class="contactUsSubmit" type="submit">{{ trans('index.submit') }}</button>
                             </div>

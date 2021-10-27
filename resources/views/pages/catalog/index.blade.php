@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', ': Catalogs & Offers')
+@section('title', '— Catalogs & Offers')
 
 @section('content')
     
@@ -91,7 +91,7 @@
                     <!-- advertisements -->
                     @foreach($all_catalogs_page_long_ad_1 as $advertisement)
                             @if(!empty($advertisement))
-                                <div class="advertisement checkStores noShadow">
+                                <div class="advertisement checkStores noShadow" style="width: 100%;padding: 12px;">
                                     @if( $advertisement->url != "undefined")
 
                                         <a href="{{$advertisement->url}}">
@@ -111,7 +111,7 @@
                     <!-- advertisements -->
                         @foreach($all_catalogs_page_long_ad_2 as $advertisement)
                             @if(!empty($advertisement))
-                                <div class="advertisement checkStores noShadow">
+                                <div class="advertisement checkStores noShadow" style="width: 100%;padding: 12px;">
                                     @if( $advertisement->url != "undefined")
 
                                         <a href="{{$advertisement->url}}">
