@@ -102,7 +102,7 @@ class CityController extends Controller
     public function filter(Request  $request, $lang, City $city)
     {
         $this->setLocale($request);
-
+        
         $stores = $this->storeRepository->all($city);
         $latest_catalogs = $this->catalogRepository->latest(4, $city);
         $popular_catalogs =  $this->catalogRepository->popular(15, $city);
@@ -114,7 +114,7 @@ class CityController extends Controller
             'banners' => $this->bannerRepository->all(),
             'latest_blog' => $this->blogRepository->latest(1),
             'recent_stores' => $this->storeRepository->get($limit=8),
-            'all_cites' => $this->cityRepository->all(),
+            'all_cites' => $city->country->city()->get(),
             'recent_cities' => $this->cityRepository->get($limit=8),
             'recent_countries' => $this->countryRepository->get($limit=5),
             'all_countries' => $this->countryRepository->all(),
@@ -123,6 +123,7 @@ class CityController extends Controller
             'home_long_ad_2' => $this->advertisementRepository->get('home-long-ad-2'),
             'home_long_ad_3' => $this->advertisementRepository->get('home-long-ad-3'),
             'current_city' => $city,
+            'current_country'=>$city->country,
             'about' => About::get()
 
 

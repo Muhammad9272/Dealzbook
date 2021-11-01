@@ -11,13 +11,14 @@
                     @endif
                     @foreach ($catalog->images as $image)
                         @if ($image->featured)
-                            <div>
+                            <div class="clckcatalog">
                                 <div class="{{$catalog->expired()?"hovereffect1":'hovereffect'}} ">
                                     <img class="img-responsive" src="{{$image->image}}" alt="">
                                     @if($catalog->expired())
                                         <div class="expired">
                                             <img src="{{ asset('assets/images/expired.png') }}">
                                         </div>
+                                        <a class="info" style="display:none;" href="/{{session('locale')}}/catalog/{{$catalog->slug}}"></a>
                                     @else
                                     <div class="overlay">
                                        <a class="info" href="/{{session('locale')}}/catalog/{{$catalog->slug}}"> {{ trans('index.view')}}</a>

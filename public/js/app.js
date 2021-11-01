@@ -37942,7 +37942,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
   var REGEXP_SPACES = /\s\s*/; // Misc
 
-  var BUTTONS = ['zoom-in', 'zoom-out', 'one-to-one', 'reset', 'prev', 'play', 'next', 'rotate-left', 'rotate-right', 'flip-horizontal', 'flip-vertical'];
+  var BUTTONS = ['zoom-in', 'zoom-out', 'prev', 'play', 'next'];
 
   /**
    * Check if the given value is a string.
@@ -40575,7 +40575,16 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
               addClass(item, "".concat(NAMESPACE, "-").concat(size));
             } else if (name === 'play') {
               addClass(item, "".concat(NAMESPACE, "-large"));
+            } else if (name === 'zoom-in') {
+              addClass(item, "".concat(NAMESPACE, "-large"));
+            }else if (name === 'zoom-out') {
+              addClass(item, "".concat(NAMESPACE, "-large"));
+            }else if (name === 'prev') {
+              addClass(item, "".concat(NAMESPACE, "-large"));
+            }else if (name === 'next') {
+              addClass(item, "".concat(NAMESPACE, "-large"));
             }
+
 
             if (isFunction(click)) {
               addListener(item, EVENT_CLICK, click);

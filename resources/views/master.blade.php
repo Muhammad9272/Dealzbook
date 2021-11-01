@@ -30,12 +30,27 @@
     
     <link rel="icon" 
       href="{{asset('assets/images/'.$gs->favicon)}}" />
+      <style type="text/css">
+          .cat-box-s .hovereffect, .cat-box-s .hovereffect1{
+            cursor: pointer !important;
+          }
+      </style>
     
     <script src="/js/umd_popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="/js/1bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     @section('pagelevel_scripts')
     @show
+    <script type="text/javascript">
+       $(document).ready(function(){
+          $('.clckcatalog').on('click',function () {            
+            var mainurl = "{{url('/')}}";
+            var url1=mainurl+$(this).find('.info').attr( "href");
+            window.location=url1;
+          })
+       })
+    </script>
+  
 
 
 

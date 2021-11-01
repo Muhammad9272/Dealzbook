@@ -12,7 +12,7 @@ return [
     'city' => 'المدينة',
     'language' => 'اللغة',
     'featured'=>'متميز',
-    'view'=>'منظر',
+    'view'=>'مشاهدة  ',
     'the_latest_catalogs' => 'أحدث العروض',
     'the_most_popular_catalogs' => 'أشهر العروض',
     'the_most_popular_blogs' => 'أشهر المدونات',
@@ -66,6 +66,9 @@ return [
     'opening_hours' => 'ساعات العمل',
     'phone' => 'هاتف',
     'address' => 'عنوان',
-    'look_at_the_map' => 'انظر الى الخريطة'
+    'look_at_the_map' => 'انظر الى الخريطة',
+    'added_on'=>'تاريخ الإضافة ',
+    'start_date'=>'بداية العرض ',
+    'end_date'=>'تاريخ الانتهاء ',
 
 ];

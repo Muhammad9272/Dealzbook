@@ -21,4 +21,6 @@ class CityRepository implements CityRepositoryInterface
         return  City::get();
     }
 
+   
+
 }

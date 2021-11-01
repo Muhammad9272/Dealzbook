@@ -60,8 +60,8 @@
                             @endif
 
                             <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-
-                                <a class="dropdown-item" href="/">All</a>
+                                @php $ddt="all"; @endphp
+                                <a class="dropdown-item" href="/{{session('locale')}}/country/{{$ddt}}">All</a>
                                 @if(count($all_countries) > 0)
 
                                     @foreach($all_countries as $country)

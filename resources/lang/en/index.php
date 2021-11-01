@@ -67,5 +67,8 @@ return [
     'opening_hours' => 'Opening hours',
     'phone' => 'Phone',
     'address' => 'Address',
-    'look_at_the_map' => 'Look at the map'
+    'look_at_the_map' => 'Look at the map',
+    'added_on'=>'Added on',
+    'start_date'=>'Start Date',
+    'end_date'=>'End Date',
 ];

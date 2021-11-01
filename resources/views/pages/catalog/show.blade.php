@@ -14,6 +14,17 @@
 
 <link href="{{ asset('css/viewer.css') }}" rel="stylesheet">
 <script src="{{ asset('js/viewer.js') }}" defer></script>
+{{-- <script type="text/javascript">
+   var $image = $('#images');
+
+      $image.viewer({
+        inline: true,
+        viewed: function() {
+          $image.viewer('zoomTo', 1);
+        }
+      });
+</script> --}}
+
 <style>
    .accordion {
    border: 1px solid #002247;
@@ -90,6 +101,29 @@
    .accordion ul.occasion_list a:hover {
    color: #002247;
    }
+   .viewer-canvas img{
+      /*height:87% !important;*/
+      transform: scale(1.09) !important;
+   }
+   .viewer-title{
+      display: none;
+   }
+
+   .viewer-navbar{
+      display: none;
+   }
+
+   /*.viewer-rotate-left,.viewer-rotate-right,.viewer-flip-horizontal,.viewer-flip-vertical,.viewer-one-to-one{
+      display: none!important;
+   }*/
+  /* .viewer-toolbar>ul>li{
+      width: 30px;
+      height: 30px;
+   }*/
+   /*.viewer-toolbar>ul>li::before{
+      width: 24px;
+      height: 24px;
+   }*/
 </style>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 {{-- 
@@ -113,7 +147,9 @@
       <div class="row catalogHeaderOne">
          <div class="storeLeftSideBar col-sm-6">
             <div class="storeLogo">
+               
                <h2 class="@if(session('locale') == 'ar') textAlignRight @endif">{{ strtoupper($catalog->name) }}</h2>
+
 
             </div>
          </div>
@@ -153,29 +189,31 @@
                <div class="row">
                   <div class="col-6 col-sm-8">
                      <p class="fontMada">
-                        {{ $store->name }}
+                        <a href="/{{session('locale')}}/store/{{$store->slug}}">
+                           {{ $store->name }}
+                        </a>
                      </p>
                   </div>
                   <div class="col-6 col-sm-4">
-                     <p>
+                     <p class="fontMada">
                         {{ count($catalog->images) }}
                      </p>
-                     <span class="darkGray">Pages</span>
+                     <span class="darkGray fontMada">Pages</span>
                   </div>
                </div>
                <div class="row">
                   <div class="col-6 col-sm-4">
-                     <p class="catalogDate">
+                     <p class="catalogDate fontMada">
                         {{ \Carbon\Carbon::parse($catalog->created_at)->day }}
                         {{ \Carbon\Carbon::parse($catalog->created_at)->subMonth()->format('F') }}
                         {{ \Carbon\Carbon::parse($catalog->created_at)->subYear()->format('Y') }}
                      </p>
-                     <p class="darkGray">
+                     <p class="darkGray fontMada">
                         Added On
                      </p>
                   </div>
                   <div class="col-6 col-sm-4">
-                     <p class="catalogDate">
+                     <p class="catalogDate fontMada">
                         @if(session('locale') == 'en')
                         {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
                         {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
@@ -184,12 +222,12 @@
                         {{ $catalog->start_at }}
                         @endif
                      </p>
-                     <p class="darkGray">
+                     <p class="darkGray fontMada">
                         Start Date
                      </p>
                   </div>
                   <div class="col-6 col-sm-4">
-                     <p class="catalogDate">
+                     <p class="catalogDate fontMada">
                         @if ($catalog->end_at && session('locale') == 'en')
                         {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
                         {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
@@ -199,7 +237,7 @@
                         @endif
                      </p>
                      @if ($catalog->end_at)
-                     <p class="darkGray">
+                     <p class="darkGray fontMada">
                         End Date
                      </p>
                      @endif
@@ -230,36 +268,36 @@
          <div class="storeContentSection col-sm-6">
             {!! $catalog->description !!}
          </div>
-         <div class="row">
-            <div class="col-sm-6">
-               @foreach ($catalog->images as $image)
-               @if ($image->featured)
-               <div class="card">
-                  <img id="image" class="w-full"
-                     src="{{$image->image}}"
-                     alt="Sunset in the mountains">
-               </div>
-               @endif
-               @endforeach
-            </div>
-            <div class="col-sm-6">
+         
                <div class="row" id="images">
-                  @foreach ($catalog_images as $image)
-                  <div class="col-6 col-sm-4 catalogImages catalogImages-sh"><img
-                     src="{{$image->image}}"
-                     alt="Picture 1"></div>
+                  @foreach ($catalog_images as $key=>$image)
+                     @if ($image->featured)
+                        <div class="col-sm-6">
+                           <div class="card">
+                              <img id="image" class="w-full"
+                                 src="{{$image->image}}"
+                                 alt="Sunset in the mountains">
+                           </div>
+                        </div>
+                        
+                     @else
+                        @if($key==1)
+                        <div class="col-sm-6">
+                           <div class="row" >
+                        @endif
+                           <div class="col-6 col-sm-4 catalogImages catalogImages-sh"><img
+                           src="{{$image->image}}"
+                           alt="Picture 1"></div>
+
+                        @if($loop->last)
+                              </div>
+                           </div>
+                        @endif
+                     @endif
                   @endforeach
                </div>
-               <div class="row">
-                  <div class="col-sm-12 catalogNavigation">
-                     @if( $catalog_images->hasPages() )
-                     <span class="pages">Pages </span> 
-                     @endif
-                     {{ $catalog_images->links() }}
-                  </div>
-               </div>
-            </div>
-         </div>
+
+
       </div>
    </div>
    @endif
@@ -314,7 +352,7 @@
                      {{ \Carbon\Carbon::parse($catalog->created_at)->subMonth()->format('F') }}
                      {{ \Carbon\Carbon::parse($catalog->created_at)->subYear()->format('Y') }}
                   </p>
-                  <p class="darkGray">
+                  <p class="darkGray fontMada">
                      Added On
                   </p>
                </div>
@@ -328,7 +366,7 @@
                      {{ $catalog->start_at }}
                      @endif
                   </p>
-                  <p class="darkGray">
+                  <p class="darkGray fontMada">
                      Start Date
                   </p>
                </div>
@@ -343,7 +381,7 @@
                      @endif
                   </p>
                   @if ($catalog->end_at )
-                  <p class="darkGray">
+                  <p class="darkGray fontMada">
                      End Date
                   </p>
                   @endif
@@ -555,9 +593,6 @@
          </div>
       </div>
       <div class="row catalogContainer">
-         <div class="storeContentSection col-sm-6">
-            {!! $catalog->description !!}
-         </div>
          <div class="storeLeftSideBar col-sm-6">
             <div class="catalogInfo">
                <div class="row">
@@ -567,25 +602,25 @@
                      </p>
                   </div>
                   <div class="col-sm-4">
-                     <p>
+                     <p class="fontMada">
                         {{ count($catalog->images) }}
                      </p>
-                     <span class="darkGray">Pages</span>
+                     <span class="darkGray fontMada">{{ trans('index.pages') }}</span>
                   </div>
                </div>
                <div class="row">
                   <div class="col-sm-4">
-                     <p class="catalogDate">
+                     <p class="catalogDate fontMada">
                         {{ \Carbon\Carbon::parse($catalog->created_at)->day }}
                         {{ \Carbon\Carbon::parse($catalog->created_at)->subMonth()->format('F') }}
                         {{ \Carbon\Carbon::parse($catalog->created_at)->subYear()->format('Y') }}
                      </p>
-                     <p class="darkGray">
-                        Added On
+                     <p class="darkGray fontMada">
+                       {{ trans('index.added_on') }}
                      </p>
                   </div>
                   <div class="col-sm-4">
-                     <p class="catalogDate">
+                     <p class="catalogDate fontMada">
                         @if(session('locale') == 'en')
                         {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
                         {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
@@ -594,12 +629,12 @@
                         {{ $catalog->start_at }}
                         @endif
                      </p>
-                     <p class="darkGray">
-                        Start Date
+                     <p class="darkGray fontMada">
+                       {{ trans('index.start_date') }}
                      </p>
                   </div>
                   <div class="col-sm-4">
-                     <p class="catalogDate">
+                     <p class="catalogDate fontMada">
                         @if ($catalog->end_at && session('locale') == 'en')
                         {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
                         {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
@@ -609,8 +644,9 @@
                         @endif
                      </p>
                      @if ($catalog->end_at)
-                     <p class="darkGray">
-                        End Date
+                     <p class="darkGray fontMada">
+                        {{ trans('index.end_date') }}
+
                      </p>
                      @endif
                   </div>
@@ -637,36 +673,40 @@
 
             </div>
          </div>
-         <div class="row">
-            <div class="col-sm-6">
-               <div class="row" id="images">
-                  @foreach ($catalog_images as $image)
-                  <div class="col-sm-4 catalogImages catalogImages-sh"><img
+         <div class="storeContentSection col-sm-6">
+            {!! $catalog->description !!}
+         </div>
+         
+
+
+         <div class="row" id="images">
+            @foreach ($catalog_images as $key=>$image)
+               @if (!$image->featured)
+                  @if($key==1)
+                  <div class="col-sm-6">
+                     <div class="row" >
+                  @endif
+                     <div class="col-6 col-sm-4 catalogImages catalogImages-sh"><img
                      src="{{$image->image}}"
                      alt="Picture 1"></div>
-                  @endforeach
-               </div>
-               <div class="row">
-                  <div class="col-sm-12 catalogNavigation">
-                     @if( $catalog_images->hasPages() )
-                     <span class="pages">Pages </span> 
-                     @endif
-                     {{ $catalog_images->links() }}
-                  </div>
-               </div>
-            </div>
-            <div class="col-sm-6">
-               @foreach ($catalog->images as $image)
-               @if ($image->featured)
-               <div class="card">
-                  <img id="image" class="w-full"
-                     src="{{$image->image}}"
-                     alt="Sunset in the mountains">
-               </div>
+
+                  @if($loop->last)
+                        </div>
+                     </div>
+                  @endif                                   
+               @else
+                   <div class="col-sm-6">
+                     <div class="card">
+                        <img id="image" class="w-full"
+                           src="{{$image->image}}"
+                           alt="Sunset in the mountains">
+                     </div>
+                  </div>  
                @endif
-               @endforeach
-            </div>
+            @endforeach
          </div>
+
+
       </div>
    </div>
    @endif
@@ -690,7 +730,7 @@
                      {{ \Carbon\Carbon::parse($catalog->created_at)->subMonth()->format('F') }}
                      {{ \Carbon\Carbon::parse($catalog->created_at)->subYear()->format('Y') }}
                   </p>
-                  <p class="darkGray">
+                  <p class="darkGray fontMada">
                      Added On
                   </p>
                </div>
@@ -704,7 +744,7 @@
                      {{ $catalog->start_at }}
                      @endif
                   </p>
-                  <p class="darkGray">
+                  <p class="darkGray fontMada">
                      Start Date
                   </p>
                </div>
@@ -718,7 +758,7 @@
                      {{ $catalog->end_at }}
                      @endif
                   </p>
-                  <p class="darkGray">
+                  <p class="darkGray fontMada">
                      End Date
                   </p>
                </div>

@@ -74,35 +74,65 @@ class CountryController extends Controller
     }
 
 
-    public function filter(Request  $request, $lang, Country $country)
+    public function filter(Request  $request, $lang,$country=null)
     {
+        
         $this->setLocale($request);
+        if($country=="all"){
+            $stores = $this->storeRepository->all();
+            $latest_catalogs = $this->catalogRepository->latest(12);
+            $popular_catalogs =  $this->catalogRepository->popular();
+            return view('home',[
+                'stores' => $stores,
+                'latest_catalogs' => $latest_catalogs,
+                'popular_catalogs' => $popular_catalogs,
+                'page_description' => Home::first(),
+                'banners' => $this->bannerRepository->all(),
+                'latest_blog' => $this->blogRepository->latest(1),
+                'recent_stores' => $this->storeRepository->get($limit=8),
+                'all_cites' => $this->cityRepository->all(),
+                'recent_cities' => $this->cityRepository->get($limit=8),
+                'recent_countries' => $this->countryRepository->get($limit=5),
+                'all_countries' => $this->countryRepository->all(),
+                'social'=> $this->socialRepository->all(),
+                'home_long_ad_1' => $this->advertisementRepository->get('home-long-ad-1'),
+                'home_long_ad_2' => $this->advertisementRepository->get('home-long-ad-2'),
+                'home_long_ad_3' => $this->advertisementRepository->get('home-long-ad-3'),
+                'about' => About::get()
+            ]);
 
-        $stores = $this->storeRepository->all(null,$country);
-        $latest_catalogs = $this->catalogRepository->latest(4, null, $country);
-        $popular_catalogs =  $this->catalogRepository->popular(15, null, $country);
-
-        return view('home',[
-            'stores' => $stores,
-            'latest_catalogs' => $latest_catalogs,
-            'popular_catalogs' => $popular_catalogs,
-            'page_description' => Home::first(),
-            'banners' => $this->bannerRepository->all(),
-            'latest_blog' => $this->blogRepository->latest(1),
-            'recent_stores' => $this->storeRepository->get($limit=8),
-            'all_cites' => $this->cityRepository->all(),
-            'recent_cities' => $this->cityRepository->get($limit=8),
-            'recent_countries' => $this->countryRepository->get($limit=5),
-            'all_countries' => $this->countryRepository->all(),
-            'social'=> $this->socialRepository->all(),
-            'home_long_ad_1' => $this->advertisementRepository->get('home-long-ad-1'),
-            'home_long_ad_2' => $this->advertisementRepository->get('home-long-ad-2'),
-            'home_long_ad_3' => $this->advertisementRepository->get('home-long-ad-3'),
-            'current_country' => $country,
-            'about' => About::get()
+        }
+        else{
+            $country=Country::where('slug',$country)->first();
+            $city=$country->city()->get();
+            $stores = $this->storeRepository->all(null,$country);
+            $latest_catalogs = $this->catalogRepository->latest(4, null, $country);
+            $popular_catalogs =  $this->catalogRepository->popular(15, null, $country);
 
 
-        ]);
+            return view('home',[
+                'stores' => $stores,
+                'latest_catalogs' => $latest_catalogs,
+                'popular_catalogs' => $popular_catalogs,
+                'page_description' => Home::first(),
+                'banners' => $this->bannerRepository->all(),
+                'latest_blog' => $this->blogRepository->latest(1),
+                'recent_stores' => $this->storeRepository->get($limit=8),
+                'all_cites' => $city,
+                'recent_cities' => $this->cityRepository->get($limit=8),
+                'recent_countries' => $this->countryRepository->get($limit=5),
+                'all_countries' => $this->countryRepository->all(),
+                'social'=> $this->socialRepository->all(),
+                'home_long_ad_1' => $this->advertisementRepository->get('home-long-ad-1'),
+                'home_long_ad_2' => $this->advertisementRepository->get('home-long-ad-2'),
+                'home_long_ad_3' => $this->advertisementRepository->get('home-long-ad-3'),
+                'current_country' => $country,
+                'about' => About::get()
+            ]);
+
+        }
+
+       
 
     }
 
