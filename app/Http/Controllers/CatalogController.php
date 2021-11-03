@@ -162,7 +162,7 @@ class CatalogController extends Controller
             'recent_countries' => $this->countryRepository->get($limit=5),
             'all_countries' => $this->countryRepository->all(),
             'store_catalogs' => $catalog->store->catalogs,
-            'catalog_images' => $catalog->images->paginate(9),
+            'catalog_images' => $catalog->images->all(),
             'catalog_small_sections' => $this->advertisementRepository->get('catalog-small-section'),
             'catalog_large_sections' => $this->advertisementRepository->get('catalog-large-section'),
             'catalog_large_ad_1' => $this->advertisementRepository->get('all-catalogs-page-long-ad-1'),

@@ -114,7 +114,7 @@ class CityController extends Controller
             'banners' => $this->bannerRepository->all(),
             'latest_blog' => $this->blogRepository->latest(1),
             'recent_stores' => $this->storeRepository->get($limit=8),
-            'all_cites' => $city->country->city()->get(),
+            'all_cites' => $city->country->city()->where('status',1)->get(),
             'recent_cities' => $this->cityRepository->get($limit=8),
             'recent_countries' => $this->countryRepository->get($limit=5),
             'all_countries' => $this->countryRepository->all(),

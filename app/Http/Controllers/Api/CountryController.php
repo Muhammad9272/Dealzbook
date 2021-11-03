@@ -34,6 +34,12 @@ class CountryController extends Controller
                             ->editColumn('name', function(Country $data) {
                                 return $data->name;
                              })
+                             ->addColumn('status', function(Country $data) {
+                                $class = $data->status == 1 ? 'green' : 'red';
+                                $s = $data->status == 1 ? 'selected' : '';
+                                $ns = $data->status == 0 ? 'selected' : '';
+                                return '<div class="action-list"><select class="btn btn-circle btn-sm process  select droplinks '.$class.'"><option data-val="1" value="'. route('admin-country-status',['id1' => $data->id, 'id2' => 1]).'" '.$s.'>Activated</option><option data-val="0" value="'. route('admin-country-status',['id1' => $data->id, 'id2' => 0]).'" '.$ns.'>Deactivated</option>/select></div>';
+                            })
                             ->addColumn('action', function(Country $data) {
                                 return '<div class="action-list">
                                 <a data-href="' . route('admin-country-edit',$data->id) . '"  data-toggle="modal" data-target="#modal1"  class="btn btn-outline btn-sm blue edit"> <i class="fa fa-edit"></i>Edit</a>
@@ -42,7 +48,7 @@ class CountryController extends Controller
 
                                 ';
                             })
-                            ->rawColumns(['action'])
+                            ->rawColumns(['action','status'])
                             ->toJson(); //--- Returning Json Data To Client Side
     }
 
@@ -168,7 +174,12 @@ class CountryController extends Controller
         $msg = 'Data Updated Successfully.';
         return response()->json($msg); 
     }
-
+     public function status($id1,$id2)
+      {
+          $data = Country::findOrFail($id1);
+          $data->status = $id2;
+          $data->update();
+      }
     /**
      * Remove the specified resource from storage.
      *

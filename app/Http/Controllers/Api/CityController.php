@@ -40,6 +40,12 @@ class CityController extends Controller
                              ->editColumn('country_id', function(City $data) {
                                 return $data->country->name;
                              })
+                             ->addColumn('status', function(City $data) {
+                                $class = $data->status == 1 ? 'green' : 'red';
+                                $s = $data->status == 1 ? 'selected' : '';
+                                $ns = $data->status == 0 ? 'selected' : '';
+                                return '<div class="action-list"><select class="btn btn-circle btn-sm process  select droplinks '.$class.'"><option data-val="1" value="'. route('admin-city-status',['id1' => $data->id, 'id2' => 1]).'" '.$s.'>Activated</option><option data-val="0" value="'. route('admin-city-status',['id1' => $data->id, 'id2' => 0]).'" '.$ns.'>Deactivated</option>/select></div>';
+                            })
                             ->addColumn('action', function(City $data) {
                                 return '<div class="action-list">
                                 <a data-href="' . route('admin-city-edit',$data->id) . '"  data-toggle="modal" data-target="#modal1"  class="btn btn-outline btn-sm blue edit"> <i class="fa fa-edit"></i>Edit</a>
@@ -48,7 +54,7 @@ class CityController extends Controller
 
                                 ';
                             })
-                            ->rawColumns(['status','action'])
+                            ->rawColumns(['action','status'])
                             ->toJson(); //--- Returning Json Data To Client Side
     }
 
@@ -64,7 +70,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        $countries=Country::all();
+        $countries=Country::where('status',1)->get();
         return view('admin.city.create',compact('countries'));
     }
 
@@ -133,7 +139,7 @@ class CityController extends Controller
     public function edit($id)
     {
         $data=City::findOrFail($id);
-        $countries=Country::all();        
+        $countries=Country::where('status',1)->get();     
         return view('admin.city.edit',compact('data','countries'));
     }
 
@@ -179,6 +185,12 @@ class CityController extends Controller
         return response()->json($msg); 
     }
 
+    public function status($id1,$id2)
+      {
+          $data = City::findOrFail($id1);
+          $data->status = $id2;
+          $data->update();
+      }
     /**
      * Remove the specified resource from storage.
      *

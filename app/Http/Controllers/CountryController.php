@@ -104,7 +104,7 @@ class CountryController extends Controller
         }
         else{
             $country=Country::where('slug',$country)->first();
-            $city=$country->city()->get();
+            $city=$country->city()->where('status',1)->get();
             $stores = $this->storeRepository->all(null,$country);
             $latest_catalogs = $this->catalogRepository->latest(4, null, $country);
             $popular_catalogs =  $this->catalogRepository->popular(15, null, $country);

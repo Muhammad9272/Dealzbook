@@ -35,6 +35,7 @@ Route::group([
   Route::post('/country/create', 'CountryController@store')->name('admin-country-store');
   Route::get('/country/edit/{id}', 'CountryController@edit')->name('admin-country-edit');
   Route::post('/country/edit/{id}', 'CountryController@update')->name('admin-country-update');
+  Route::get('/country/status/{id1}/{id2}', 'CountryController@status')->name('admin-country-status');
   // Route::get('/country/delete/{id}', 'CountryController@destroy')->name('admin-country-delete');
 
 
@@ -44,6 +45,7 @@ Route::group([
   Route::post('/city/create', 'CityController@store')->name('admin-city-store');
   Route::get('/city/edit/{id}', 'CityController@edit')->name('admin-city-edit');
   Route::post('/city/edit/{id}', 'CityController@update')->name('admin-city-update');
+  Route::get('/city/status/{id1}/{id2}', 'CityController@status')->name('admin-city-status');
 
 
   Route::get('/store/datatables', 'StoreController@datatables')->name('admin-store-datatables'); //JSON REQUEST

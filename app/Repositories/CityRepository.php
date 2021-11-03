@@ -11,14 +11,14 @@ class CityRepository implements CityRepositoryInterface
 
     public function get( $limit = 5){
 
-        return  City::orderBy('created_at', 'desc')
+        return  City::orderBy('created_at', 'desc')->where('status',1)
                     ->limit($limit)
                     ->get();
 
     }
 
     public function all(){
-        return  City::get();
+        return  City::where('status',1)->get();
     }
 
    

@@ -11,7 +11,7 @@ class CountryRepository implements CountryRepositoryInterface
 
     public function get( $limit = 5){
 
-        return  Country::orderBy('created_at', 'desc')
+        return  Country::orderBy('created_at', 'desc')->where('status',1)
                     ->limit($limit)
                     ->get();
 
@@ -19,7 +19,7 @@ class CountryRepository implements CountryRepositoryInterface
 
     public function all(){
 
-        return  Country::orderBy('created_at', 'desc')
+        return  Country::orderBy('created_at', 'desc')->where('status',1)
             ->get();
 
     }

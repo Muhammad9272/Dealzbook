@@ -38,6 +38,7 @@
                                                    
                                                     <th> Name</th>
                                                     <th> Slug</th>
+                                                    <th> Status</th>
                                                     <th> Options </th>
                                                 </tr>
                                             </thead>
@@ -91,6 +92,7 @@
                columns: [
                         { data: 'name', name: 'name' },
                         { data: 'slug', name: 'slug' },
+                        { data: 'status', searchable: false, orderable: false },
 
                         { data: 'action', searchable: false, orderable: false }
 

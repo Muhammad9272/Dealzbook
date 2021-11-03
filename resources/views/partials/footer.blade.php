@@ -14,14 +14,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/stores">
+                        <a href="/{{ session('locale') }}/stores">
                             <div>
                                 {{ trans('index.stores')}}
                             </div>
                         </a>
                     </li>
                     <li>
-                        <a href="/catalogs">
+                        <a href="/{{ session('locale') }}/catalogs">
                             <div>
                                 {{ trans('index.catalogs')}}
                             </div>
@@ -35,7 +35,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/faq">
+                        <a href="/{{ session('locale') }}/faq">
                             <div>
                                 {{ trans('index.faq')}}
                             </div>
@@ -73,7 +73,7 @@
                     <p class="subHeading2">{{ trans('index.stores')}}</p>
 
                     @foreach ($recent_stores as $store)
-                        <p><a href="/store/{{$store->slug}}">{{$store->name}}</a></p>
+                        <p><a href="/{{ session('locale') }}/store/{{$store->slug}}">{{$store->name}}</a></p>
                     @endforeach
 
                     <p><a href="">{{ trans('index.all_stores') }}</a></p>
@@ -158,11 +158,11 @@
                                 {{ trans('index.home')}}
                             </a>
 
-                            <a class="displayBlock darkGray"  href="/stores">
+                            <a class="displayBlock darkGray"  href="/{{ session('locale') }}/stores">
                                 {{ trans('index.stores')}}
                             </a>
 
-                            <a class="displayBlock darkGray"  href="/catalogs">
+                            <a class="displayBlock darkGray"  href="/{{ session('locale') }}/catalogs">
                                 {{ trans('index.catalogs')}}
                             </a>
 
@@ -173,7 +173,7 @@
                         </div>
 
                         <div class="col-6 navigationLinksForExtraSmallScreen">
-                            <a class="darkGray displayBlock" href="/faq">
+                            <a class="darkGray displayBlock" href="/{{ session('locale') }}/faq">
                                 <div>
                                     {{ trans('index.faq')}}
                                 </div>
@@ -328,14 +328,14 @@
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="/{{ session('locale') }}/contact-us">
                             <div>
                                 {{ trans('index.contact_us')}}
                             </div>
                         </a>
                     </li>
                     <li>
-                        <a href="/faq">
+                        <a href="/{{ session('locale') }}/faq">
                             <div>
                                 {{ trans('index.faq')}}
                             </div>
@@ -349,7 +349,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/catalogs">
+                        <a href="/{{ session('locale') }}/catalogs">
                             <div>
                                 {{ trans('index.catalogs')}}
                             </div>
@@ -357,7 +357,7 @@
                     </li>
 
                     <li>
-                        <a href="/stores">
+                        <a href="/{{ session('locale') }}/stores">
                             <div>
                                 {{ trans('index.stores')}}
                             </div>
@@ -439,7 +439,7 @@
                     <p class="subHeading2">{{ trans('index.stores')}}</p>
 
                     @foreach ($recent_stores as $store)
-                        <p><a href="/store/{{$store->slug}}">{{$store->name}}</a></p>
+                        <p><a href="/{{ session('locale') }}/store/{{$store->slug}}">{{$store->name}}</a></p>
                     @endforeach
 
                     <p><a href="">{{ trans('index.all_stores') }}</a></p>
@@ -458,7 +458,7 @@
             <div class="row">
                 
                 <div class="col-6 navigationLinksForExtraSmallScreen">
-                    <a class="textAlignRight darkGray displayBlock" href="/faq">
+                    <a class="textAlignRight darkGray displayBlock" href="/{{ session('locale') }}/faq">
                         <div>
                             {{ trans('index.faq')}}
                         </div>
@@ -482,11 +482,11 @@
                         {{ trans('index.home')}}
                     </a>
 
-                    <a class="textAlignRight displayBlock darkGray"  href="/stores">
+                    <a class="textAlignRight displayBlock darkGray"  href="/{{ session('locale') }}/stores">
                         {{ trans('index.stores')}}
                     </a>
 
-                    <a class="textAlignRight displayBlock darkGray"  href="/catalogs">
+                    <a class="textAlignRight displayBlock darkGray"  href="/{{ session('locale') }}/catalogs">
                         {{ trans('index.catalogs')}}
                     </a>
 

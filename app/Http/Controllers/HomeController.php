@@ -82,7 +82,7 @@ class HomeController extends Controller
         // return redirect("/$locale"."/country/united-arab-emirates/");
         $this->setLocale($request);
         $country=Country::find(9);
-        $city=$country->city()->get();
+        $city=$country->city()->where('status',1)->get();
      
         // $stores = $this->storeRepository->all();
         // $latest_catalogs = $this->catalogRepository->latest(12);

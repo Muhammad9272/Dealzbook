@@ -39,6 +39,7 @@
                                                     <th> Name</th>
                                                     <th> Slug</th>
                                                     <th> Country</th>
+                                                    <th> Status</th>
                                                     <th> Options </th>
                                                 </tr>
                                             </thead>
@@ -93,6 +94,7 @@
                         { data: 'name', name: 'name' },
                         { data: 'slug', name: 'slug' },
                         { data: 'country_id', name: 'country_id' },
+                        { data: 'status', searchable: false, orderable: false },
 
                         { data: 'action', searchable: false, orderable: false }
 

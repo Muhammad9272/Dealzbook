@@ -26,6 +26,9 @@
 </script> --}}
 
 <style>
+   .catalogImages {
+      align-items:center ;
+   }
    .accordion {
    border: 1px solid #002247;
    }
@@ -112,7 +115,30 @@
    .viewer-navbar{
       display: none;
    }
+   #images img:hover{
+      cursor: pointer;
+   }
+    .viewer-toolbar>ul>.viewer-large{
+      width: 40px !important;
+      height: 40px !important;
+   }
+   .viewer-play:before {
+    background-position: -95px 4px;
+   }
+   .viewer-next:before {
+    background-position: -115px 4px;
+   }
+   .viewer-prev:before {
+    background-position: -76px 4px;
+   }
+   .viewer-zoom-out:before {
+    background-position: -16px 4px;
+   }
+   .viewer-zoom-in:before {
+    background-position: 4px 4px;
+   }
 
+  
    /*.viewer-rotate-left,.viewer-rotate-right,.viewer-flip-horizontal,.viewer-flip-vertical,.viewer-one-to-one{
       display: none!important;
    }*/
@@ -269,9 +295,10 @@
             {!! $catalog->description !!}
          </div>
          
-               <div class="row" id="images">
+               <div class="row" id="images" >
                   @foreach ($catalog_images as $key=>$image)
-                     @if ($image->featured)
+
+                      @if($key==0)
                         <div class="col-sm-6">
                            <div class="card">
                               <img id="image" class="w-full"
@@ -279,23 +306,40 @@
                                  alt="Sunset in the mountains">
                            </div>
                         </div>
-                        
-                     @else
+                      @elseif($key<=9)
                         @if($key==1)
-                        <div class="col-sm-6">
-                           <div class="row" >
+                           <div class="col-sm-6">
+                              <div class="row">
                         @endif
-                           <div class="col-6 col-sm-4 catalogImages catalogImages-sh"><img
-                           src="{{$image->image}}"
-                           alt="Picture 1"></div>
-
-                        @if($loop->last)
+                            <div class="col-6 col-sm-4 catalogImages catalogImages-sh " ><img
+                              src="{{$image->image}}"
+                              alt="Picture 1">
+                            </div>
+                        @if($loop->last || $key==9)    
                               </div>
-                           </div>
+                            </div>
+                        @endif                      
+                      @else
+                        @if($key==10)
+                         <div class="row" style="margin-top: 20px;">
                         @endif
-                     @endif
+                           <div class="col-6 col-sm-2 catalogImages catalogImages-sh">
+                               <img
+                                 src="{{$image->image}}"
+                                 alt="Picture 1">
+                           </div>
+                        @if($loop->last)   
+                         </div>
+                        @endif
+                      @endif
+
+
                   @endforeach
                </div>
+
+
+
+
 
 
       </div>
@@ -678,33 +722,47 @@
          </div>
          
 
+               <div class="row" id="images" >
+                  @foreach ($catalog_images as $key=>$image)
 
-         <div class="row" id="images">
-            @foreach ($catalog_images as $key=>$image)
-               @if (!$image->featured)
-                  @if($key==1)
-                  <div class="col-sm-6">
-                     <div class="row" >
-                  @endif
-                     <div class="col-6 col-sm-4 catalogImages catalogImages-sh"><img
-                     src="{{$image->image}}"
-                     alt="Picture 1"></div>
-
-                  @if($loop->last)
+                      @if($key==0)
+                        <div class="col-sm-6">
+                           <div class="card">
+                              <img id="image" class="w-full"
+                                 src="{{$image->image}}"
+                                 alt="Sunset in the mountains">
+                           </div>
                         </div>
-                     </div>
-                  @endif                                   
-               @else
-                   <div class="col-sm-6">
-                     <div class="card">
-                        <img id="image" class="w-full"
-                           src="{{$image->image}}"
-                           alt="Sunset in the mountains">
-                     </div>
-                  </div>  
-               @endif
-            @endforeach
-         </div>
+                      @elseif($key<=9)
+                        @if($key==1)
+                           <div class="col-sm-6">
+                              <div class="row">
+                        @endif
+                            <div class="col-6 col-sm-4 catalogImages catalogImages-sh " ><img
+                              src="{{$image->image}}"
+                              alt="Picture 1">
+                            </div>
+                        @if($loop->last || $key==9)    
+                              </div>
+                            </div>
+                        @endif                      
+                      @else
+                        @if($key==10)
+                         <div class="row" style="margin-top: 20px;">
+                        @endif
+                           <div class="col-6 col-sm-2 catalogImages catalogImages-sh">
+                               <img
+                                 src="{{$image->image}}"
+                                 alt="Picture 1">
+                           </div>
+                        @if($loop->last)   
+                         </div>
+                        @endif
+                      @endif
+
+
+                  @endforeach
+               </div>
 
 
       </div>
@@ -883,18 +941,18 @@
    <div class="container storeInCities">
       <div class="accordion " id="accordionExample">
          @foreach ($in_cities as $city)
-         <div class="card">
+          <div class="card">
             <div class="card-header">
                <h2 class="mb-0 @if(session('locale') == 'ar') textAlignRight @endif">
                   <button class="btn btn-link collapsed " type="button" data-toggle="collapse"
-                     data-target="#p__detail" aria-expanded="true" aria-controls="p__detail">
+                     data-target="#p__detail2{{$city->id}}" aria-expanded="true" aria-controls="p__detail2{{$city->id}}">
                   {{ucfirst($city->name)}}
                   </button>
                </h2>
             </div>
             @foreach($store->branches as $branch)
             @if($branch->city_id == $city->id)
-            <div id="p__detail" class="collapse " data-parent="#accordionExample">
+            <div id="p__detail2{{$city->id}}" class="collapse " data-parent="#accordionExample">
                <div class="card-body">
                   <h5 class="mb-0 @if(session('locale') == 'ar') textAlignRight @endif">
                      <a href="/{{$store->slug}}/{{$branch->city->slug}}/{{$branch->slug}}">
@@ -903,7 +961,7 @@
                      </button>
                      </a>
                   </h5>
-                  <div id="{{$branch->slug}}">
+                  <div id="{{$branch->slug}}2">
                      <div class="card-body">
                         <div class="row">
                            <div class="col-sm-4 subSection">
@@ -937,7 +995,8 @@
             </div>
             @endif
             @endforeach
-         </div>
+          </div>
+         
          @endforeach
          @endif
          {{--  ============================ Store branches end==================  --}}
