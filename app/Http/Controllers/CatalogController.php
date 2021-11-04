@@ -146,7 +146,7 @@ class CatalogController extends Controller
         // }
         //increment total_views of the catalog
         $this->catalogRepository->viewed($catalog);
-
+        //dd( $catalog->images->where('featured',1)->first());
         return view('pages.catalog.show',[
             'catalog' => $catalog,
             'catalog_cities' => $this->catalogRepository->inCities($catalog),
@@ -163,6 +163,7 @@ class CatalogController extends Controller
             'all_countries' => $this->countryRepository->all(),
             'store_catalogs' => $catalog->store->catalogs,
             'catalog_images' => $catalog->images->all(),
+            'featured'=>$catalog->images->where('featured',1)->first(),
             'catalog_small_sections' => $this->advertisementRepository->get('catalog-small-section'),
             'catalog_large_sections' => $this->advertisementRepository->get('catalog-large-section'),
             'catalog_large_ad_1' => $this->advertisementRepository->get('all-catalogs-page-long-ad-1'),

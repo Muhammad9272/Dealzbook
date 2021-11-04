@@ -8,7 +8,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-
+use Request;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -30,9 +30,15 @@ class AppServiceProvider extends ServiceProvider
     {
 
         Schema::defaultStringLength(191);
-
+        
         //check if current locale is empty if so a default locale must be provided 
-        if(!Session::has('locale')) {
+
+        $lang=Request::segment(1);
+        if($lang=='en' || $lang=='ar'){
+            app()->setLocale($lang);
+            session(['locale' => $lang]);
+        }
+        else if(!Session::has('locale')) {
             app()->setLocale('en');
             session(['locale' => 'en']);
         }

@@ -296,17 +296,19 @@
          </div>
          
                <div class="row" id="images" >
+                  @php $count=0; @endphp
                   @foreach ($catalog_images as $key=>$image)
 
-                      @if($key==0)
+                     @if ($featured && $count==0)
                         <div class="col-sm-6">
                            <div class="card">
                               <img id="image" class="w-full"
-                                 src="{{$image->image}}"
+                                 src="{{$featured->image}}"
                                  alt="Sunset in the mountains">
                            </div>
                         </div>
-                      @elseif($key<=9)
+                        @php $count=$count+1; @endphp
+                      @elseif(!$image->featured && $key<=9)
                         @if($key==1)
                            <div class="col-sm-6">
                               <div class="row">
@@ -319,7 +321,7 @@
                               </div>
                             </div>
                         @endif                      
-                      @else
+                      @elseif(!$image->featured)
                         @if($key==10)
                          <div class="row" style="margin-top: 20px;">
                         @endif
@@ -723,17 +725,19 @@
          
 
                <div class="row" id="images" >
+                  @php $count=0; @endphp
                   @foreach ($catalog_images as $key=>$image)
 
-                      @if($key==0)
+                     @if ($featured && $count==0)
                         <div class="col-sm-6">
                            <div class="card">
                               <img id="image" class="w-full"
-                                 src="{{$image->image}}"
+                                 src="{{$featured->image}}"
                                  alt="Sunset in the mountains">
                            </div>
                         </div>
-                      @elseif($key<=9)
+                        @php $count=$count+1; @endphp
+                      @elseif(!$image->featured && $key<=9)
                         @if($key==1)
                            <div class="col-sm-6">
                               <div class="row">
@@ -746,7 +750,7 @@
                               </div>
                             </div>
                         @endif                      
-                      @else
+                      @elseif(!$image->featured)
                         @if($key==10)
                          <div class="row" style="margin-top: 20px;">
                         @endif

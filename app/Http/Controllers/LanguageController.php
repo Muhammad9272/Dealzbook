@@ -16,6 +16,10 @@ class LanguageController extends Controller
         session(['locale' => $language]);
         $previousUrl = url()->previous();
 
+        if(app('router')->getRoutes()->match(app('request')->create(URL::previous()))->getName() == 'front.index'){
+         return redirect()->route('front.index',$language);
+        }
+
         if($language == 'ar'){
             $url = preg_replace('/en/', 'ar', $previousUrl, 1);
             //$url = str_replace('en', $language,$previousUrl);

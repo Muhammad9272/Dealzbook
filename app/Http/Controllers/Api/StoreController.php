@@ -93,8 +93,6 @@ class StoreController extends Controller
                     'profilePicture' => 'required',
                     'name' => 'required|unique:stores|max:255',
                     'arabicName' => 'required',
-                    'about' => 'required',
-                    'arabicAbout' => 'required',
                     'description' => 'required',
                     'arabic_description' => 'required',
                     ];
@@ -122,8 +120,8 @@ class StoreController extends Controller
             // $store->about = Str::of($request->about)->trim();
 
              //$store->name = Str::of($request->name)->trim();
-            $store->setTranslation('about', 'en', $request->about);
-            $store->setTranslation('about', 'ar', $request->arabicAbout);
+            // $store->setTranslation('about', 'en', $request->about);
+            // $store->setTranslation('about', 'ar', $request->arabicAbout);
 
             $store->save();
 
@@ -187,7 +185,7 @@ class StoreController extends Controller
         //--- Validation Section
         $rules = [
                 'name' => 'required|max:255',
-                'about' => 'required',
+                
                 'description' => 'required',
                 'arabic_description' => 'required',
                 ];
@@ -214,8 +212,8 @@ class StoreController extends Controller
         $store->instagram_link = Str::of($request->instagramLink)->trim();
         $store->youtube_link = Str::of($request->youtubeLink)->trim();
         //$store->about = Str::of($request->about)->trim();
-        $store->setTranslation('about', 'en', $request->about);
-        $store->setTranslation('about', 'ar', $request->arabicAbout);
+        // $store->setTranslation('about', 'en', $request->about);
+        // $store->setTranslation('about', 'ar', $request->arabicAbout);
 
         /*
         * update the store's seo tags

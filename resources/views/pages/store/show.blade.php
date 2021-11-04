@@ -237,7 +237,7 @@
 
 
                         <p>
-                            {!! $store->about !!}
+                            {!! $store->page->description !!}
                         </p>
 
                     </div>
@@ -335,7 +335,7 @@
 
                         <div class="richTextBody">
                             <p>
-                                {!! $store->about !!}
+                               {!! $store->page->getTranslation('description', 'ar') !!}
                             </p>
                         </div>
 

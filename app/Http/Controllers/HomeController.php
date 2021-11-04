@@ -64,11 +64,18 @@ class HomeController extends Controller
         $this->advertisementRepository = $advertisementRepository;
     }
 
-    protected function setLocale($request)
+    protected function setLocale($lang=null)
     {
-        $value = $request->session()->get('locale');
 
-        app()->setLocale($value);
+        if($lang=='en' || $lang=='ar'){
+            app()->setLocale($lang);
+            session(['locale' => $lang]);
+        }else{
+           $lang=session()->get('locale');
+           app()->setLocale($lang); 
+        }
+
+    
 
     }
     /**
@@ -76,11 +83,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request)
+    public function index(Request $request,$lang=null)
     {   
         // $locale = session('locale');
         // return redirect("/$locale"."/country/united-arab-emirates/");
-        $this->setLocale($request);
+        $this->setLocale($lang);
         $country=Country::find(9);
         $city=$country->city()->where('status',1)->get();
      

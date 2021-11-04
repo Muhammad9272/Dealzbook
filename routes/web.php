@@ -257,7 +257,7 @@ Route::prefix('admin')->group(function() {
 
 });
 
-Route::get('/','HomeController@index')->name('front.index');
+Route::get('/{lang?}','HomeController@index')->name('front.index');
 
 // Route::get('/', function () {
 

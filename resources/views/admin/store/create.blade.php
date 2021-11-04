@@ -41,7 +41,7 @@
 
 
 
-                            <div class="row">
+                            {{-- <div class="row" style="display:none;">
                                 <div class="col-md-12">
 
                                 <div class="form-group last">
@@ -53,7 +53,7 @@
                                 </div>
 
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="row">
                                 <div class="col-md-12">
 
@@ -101,19 +101,20 @@
                                 </div>                        
                             </div>
 
-                            <div class="row">
+                            {{-- <div class="row" style="display:none;">
                                 <div class="col-md-12">
 
                                 <div class="form-group last">
                                     <label class="control-label col-md-3">About Us</label>
                                     <div class="col-md-8">
-                                          <textarea name="arabicAbout" class="nic-simple form-control" style="width: 100%;">
+                                          <textarea name="arabicAbout" class="nic-simple form-control" style="width: 100%;" >
+                                            jkjklj
                                           </textarea>
                                     </div>
                                 </div>
 
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="row">
                                 <div class="col-md-12">
 
