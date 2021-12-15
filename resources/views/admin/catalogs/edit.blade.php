@@ -479,6 +479,8 @@
 <script type="text/javascript">    
     var convasdata=[];
     PDFJS.disableWorker = true;
+    
+
 
     var pdf = document.getElementById('pdf');
     pdf.onchange = function(ev) {
@@ -508,21 +510,28 @@
                     geturl(pdf,vrt);                
                  }   
                  console.log(convasdata);
-                 $('.datauploader').text("Done");
-                 $('.addProductSubmit-btn').attr('disabled',false);
+                 var refreshIntervalId=setInterval(runFunction,1000);
+                 function runFunction(argument) {      
+                    if( $("#input1").val()) {
+                      $('.addProductSubmit-btn').attr('disabled',false); 
+                      $('.datauploader').text("Done");
+                      clearInterval(refreshIntervalId);
+                    }                  
+                 }
+                             
                  
               }, function(error){
                 console.log(error);
               });
-                
             };
             fileReader.readAsArrayBuffer(file);
-
+                
         }
     }
 
     function geturl(pdf,i) {
-        // console.log(i);
+        //console.log(i);
+        //$('.datauploader').text("Done"+i);
         pdf.getPage(i).then(function getPageHelloWorld(page) {
           var scale = 1.5;
           var viewport = page.getViewport(scale);

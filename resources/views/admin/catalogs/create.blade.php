@@ -319,7 +319,7 @@
                                          <input id='pdf' type='file' name="pdfFile" accept="application/pdf" />                                    
                                 </div>
                                  <div class="col-md-4 control-label" style="text-align:left;"  >
-                                    <p class="datauploader" style="margin: 0;font-weight: 600;color: #32c5d2;">Processing ...</p>  
+                                    <p class="datauploader" style="margin: 0;font-weight: 600;color: #32c5d2;"></p>  
                                 </div>   
                             </div>
                         </div>
@@ -411,8 +411,14 @@
                     geturl(pdf,vrt);                
                  }   
                  console.log(convasdata);
-                 $('.datauploader').text("Done");
-                 $('.addProductSubmit-btn').attr('disabled',false);
+                 var refreshIntervalId=setInterval(runFunction,1000);
+                 function runFunction(argument) {      
+                    if( $("#input1").val()) {
+                      $('.addProductSubmit-btn').attr('disabled',false); 
+                      $('.datauploader').text("Done");
+                      clearInterval(refreshIntervalId);
+                    }                  
+                 }
               }, function(error){
                 console.log(error);
               });
