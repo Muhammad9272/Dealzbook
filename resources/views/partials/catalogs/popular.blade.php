@@ -47,12 +47,12 @@
                                     <p class="catalogDate">
                                         {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
                                         @if(!$catalog->end_at)
-                                            {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
+                                            {{ \Carbon\Carbon::parse($catalog->start_at)->format('F') }}
                                         @endif
 
                                         @if($catalog->end_at && session('locale') == 'en')
                                             <span> - {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
-                                                {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
+                                                {{ \Carbon\Carbon::parse($catalog->end_at)->format('F') }}
                                             </span>
                                         @else
                                             {{ $catalog->end_at }}
@@ -111,12 +111,12 @@
                                     <p class="catalogDate">
                                         {{ $catalog->start_at }}
                                         @if(!$catalog->end_at)
-                                            {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
+                                            {{ \Carbon\Carbon::parse($catalog->start_at)->format('F') }}
                                         @endif
 
                                         @if($catalog->end_at && session('locale') == 'en')
                                             <span> - {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
-                                                {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
+                                                {{ \Carbon\Carbon::parse($catalog->end_at)->format('F') }}
                                         </span>
                                         @else
                                         {{ $catalog->end_at}}
@@ -180,12 +180,12 @@
 
 
                                         @if(!$catalog->end_at && session('locale') == 'en')
-                                            {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
+                                            {{ \Carbon\Carbon::parse($catalog->start_at)->format('F') }}
                                         @endif
 
                                         @if($catalog->end_at && session('locale') == 'en')
                                             <span> - {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
-                                                {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
+                                                {{ \Carbon\Carbon::parse($catalog->end_at)->format('F') }}
                                         </span>
                                         @else 
                                         {{ $catalog->end_at}}
@@ -245,12 +245,12 @@
                                 @endif
                                 
                                 @if(!$catalog->end_at && session('locale') == 'en')
-                                    {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
+                                    {{ \Carbon\Carbon::parse($catalog->start_at)->format('F') }}
                                 @endif
 
                                 @if($catalog->end_at && session('locale') == 'en')
                                     <span> - {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
-                                        {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
+                                        {{ \Carbon\Carbon::parse($catalog->end_at)->format('F') }}
                                     </span>
                                     @else
                                     {{ $catalog->end_at}}
