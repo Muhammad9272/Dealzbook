@@ -315,9 +315,12 @@
                         <div class="col-md-12 mb-20">      
                             <div class="form-group">                 
                                 <label class="col-md-3 control-label" >Add PDfs</label>
-                                <div class="col-md-8 control-label"  >
+                                <div class="col-md-3 control-label"  >
                                          <input id='pdf' type='file' name="pdfFile" accept="application/pdf" />                                    
                                 </div>
+                                 <div class="col-md-4 control-label" style="text-align:left;"  >
+                                    <p class="datauploader" style="margin: 0;font-weight: 600;color: #32c5d2;">Processing ...</p>  
+                                </div>   
                             </div>
                         </div>
                     </div>
@@ -383,6 +386,8 @@
 
     var pdf = document.getElementById('pdf');
     pdf.onchange = function(ev) {
+        $('.datauploader').text("Processing ...");
+        $('.addProductSubmit-btn').attr('disabled',true);
         if (file = document.getElementById('pdf').files[0]) {
             fileReader = new FileReader();
             fileReader.onload = function(ev) {
@@ -406,6 +411,8 @@
                     geturl(pdf,vrt);                
                  }   
                  console.log(convasdata);
+                 $('.datauploader').text("Done");
+                 $('.addProductSubmit-btn').attr('disabled',false);
               }, function(error){
                 console.log(error);
               });

@@ -43,7 +43,7 @@ class CatalogController extends Controller
     public function datatables()
     {
         // dd(767);
-         $datas = Catalog::orderBy('id','desc')->get();
+         $datas = Catalog::orderBy('id','desc')->take('10');
          //--- Integrating This Collection Into Datatables
          return Datatables::of($datas)
                             ->editColumn('name', function(Catalog $data) {
@@ -351,8 +351,7 @@ class CatalogController extends Controller
      */
     public function update(Request $request,$id)
     {  
-        // $path = public_path().'/assets/images/dealzbook/';
-       
+
         //dd($request->pdfs);
          //--- Validation Section
         $rules = [
@@ -503,6 +502,10 @@ class CatalogController extends Controller
             if(count($images)>0 && $images[0]!=""){
 
                 foreach ($catalog->images()->where("featured",'!=',1)->get() as $gal) {
+                        $file= $this->getFilename($gal->image);
+                        if (file_exists(public_path().'/assets/images/dealzbook/'.$file)) {
+                            unlink(public_path().'/assets/images/dealzbook/'.$file);
+                        }
                         $gal->delete();
                     }
                 foreach($images as $image){
@@ -544,9 +547,15 @@ class CatalogController extends Controller
             }
             $catalog->attachments = $name;
             $catalog->update();
+            
 
 
             foreach ($catalog->images()->where("featured",'!=',1)->get() as $gal) {
+                $file= $this->getFilename($gal->image);
+                if (file_exists(public_path().'/assets/images/dealzbook/'.$file)) {
+                    unlink(public_path().'/assets/images/dealzbook/'.$file);
+                }
+                
                 $gal->delete();
             }
             foreach($request->pdfs as $key=>$image){     
@@ -687,7 +696,13 @@ class CatalogController extends Controller
         $image->save();
 
     }
-
+    
+    public function getFilename($url)
+    {
+        $pos = strrpos($url, '/');
+        $name = $pos === false ? $url : substr($url, $pos + 1);
+        return $name;
+    }
     /**
      * delete a catalog image
      */
@@ -696,7 +711,7 @@ class CatalogController extends Controller
         $catalog = Catalog::find($request->image['imageable_id']);
         $catalog->images()->where('id', $request->image['id'])->delete();
     }
-
+ 
      /**
      * delete a catalog pdf
      */
