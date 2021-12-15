@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', '— '.  optional($about[0])->seoTags->title  )
+@section('title', ': '.  optional($about[0])->seoTags->title  )
 @section('description', optional($about[0])->seoTags->description  )
 
 @section('content')

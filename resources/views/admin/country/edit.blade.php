@@ -2,7 +2,7 @@
 
             <!-- BEGIN FORM-->
             <div class="gocover" style="background: url({{asset('assets/images/'.$gs->admin_loader)}}) no-repeat scroll center center rgba(45, 45, 45, 0.5);"></div>
-            <form id="geniusformdata11" action="{{ route('admin-country-update',$data->id) }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+            <form id="geniusformdata" action="{{ route('admin-country-update',$data->id) }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                {{csrf_field()}}
                @include('includes.admin.form-both')
                <div class="row">

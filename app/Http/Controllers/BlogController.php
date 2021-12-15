@@ -63,7 +63,7 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
-      
+
         $this->setLocale($request);
 
         return view('pages.blog.index',[
