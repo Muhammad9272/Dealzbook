@@ -12,7 +12,14 @@ return [
     'city' => 'City',
     'featured'=>'Featured',
     'view'=>'View',
-    'language' => 'Language',
+    'language' => 'Language', 
+
+    'coupons' => 'Coupons', 
+    'coupon' => 'coupon', 
+    'coupon_link' => 'Coupon Link', 
+    'copy_code'=>'Copy Code',
+
+    'the_latest_coupons' => 'The Latest Coupons',
     'the_latest_catalogs' => 'The latest catalogs',
     'the_most_popular_catalogs' => 'The most popular catalogs',
     'the_most_popular_blogs' => 'The most popular blogs',

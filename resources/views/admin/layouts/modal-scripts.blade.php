@@ -91,6 +91,7 @@
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['fontsize', ['fontsize']],
+                ['view', ['fullscreen']],
                 ['custom', ['picture', 'filemanager']]
             ],
         });
@@ -105,6 +106,7 @@
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['fontsize', ['fontsize']],
+                ['view', ['fullscreen']],
                 ['custom', ['picture', 'filemanager']]
             ],
         });
@@ -121,6 +123,7 @@
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['fontsize', ['fontsize']],
+                ['view', ['fullscreen']],
                 ['custom', ['picture', 'filemanager']]
             ],
         });
@@ -136,6 +139,7 @@
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['fontsize', ['fontsize']],
+                ['view', ['fullscreen']],
                 ['custom', ['picture', 'filemanager']]
             ],
         });
@@ -160,6 +164,14 @@
                 }
                 else{
                     $('.end_date_status').addClass('not-show');
+                }      
+            });
+            $('.start_date_chk').on('click',function() {
+                if(this.checked) {
+                   $('.start_date_status').removeClass('not-show');
+                }
+                else{
+                    $('.start_date_status').addClass('not-show');
                 }      
             });
 

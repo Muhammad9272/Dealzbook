@@ -43,7 +43,7 @@ class CatalogController extends Controller
     public function datatables()
     {
         // dd(767);
-         $datas = Catalog::orderBy('id','desc')->take('10');
+         $datas = Catalog::orderBy('id','desc');
          //--- Integrating This Collection Into Datatables
          return Datatables::of($datas)
                             ->editColumn('name', function(Catalog $data) {
@@ -75,6 +75,8 @@ class CatalogController extends Controller
                             ->addColumn('action', function(Catalog $data) {
                                 return '<div class="action-list">
                                 <a data-href="' . route('admin-catalogs-edit',$data->id) . '"  data-toggle="modal" data-target="#modal1"  class="btn btn-outline btn-sm blue edit"> <i class="fa fa-edit"></i>Edit</a>
+                                <a data-href="'.route('admin-catalogs-delete',$data->id).'" class="btn btn-outline delete-data  btn-sm red" data-toggle="confirmation" data-placement="top" data-id="'.$data->id.'" >
+                                    <i class="fa fa-trash"></i> Delete </a>
                                 
                                 </div>
 
@@ -738,6 +740,26 @@ class CatalogController extends Controller
      */
     public function destroy($id)
     {
-        //
+          $catalog = Catalog::findOrFail($id);
+
+          if($catalog->images()->count()>0){
+            foreach ($catalog->images()->get() as $gal) {
+                $file= $this->getFilename($gal->image);
+                if (file_exists(public_path().'/assets/images/dealzbook/'.$file)) {
+                    unlink(public_path().'/assets/images/dealzbook/'.$file);
+                }                
+                $gal->delete();
+            }            
+          }
+
+          if($catalog->attachments != null)
+          {
+                if (file_exists(public_path().'/assets/pdfs/'.$catalog->attachments)) {
+                    unlink(public_path().'/assets/pdfs/'.$catalog->attachments);
+                }
+          }
+          $catalog->delete();
+           
+          return response()->json("Data deleted Successfully !");
     }
 }

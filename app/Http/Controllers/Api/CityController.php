@@ -49,6 +49,8 @@ class CityController extends Controller
                             ->addColumn('action', function(City $data) {
                                 return '<div class="action-list">
                                 <a data-href="' . route('admin-city-edit',$data->id) . '"  data-toggle="modal" data-target="#modal1"  class="btn btn-outline btn-sm blue edit"> <i class="fa fa-edit"></i>Edit</a>
+                                <a data-href="'.route('admin-city-delete',$data->id).'" class="btn btn-outline delete-data  btn-sm red" data-toggle="confirmation" data-placement="top" data-id="'.$data->id.'" >
+                                    <i class="fa fa-trash"></i> Delete </a>
                                 
                                 </div>
 
@@ -199,6 +201,8 @@ class CityController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $data = City::findOrFail($id);
+          $data->delete();
+          return response()->json("Data deleted Successfully !");
     }
 }

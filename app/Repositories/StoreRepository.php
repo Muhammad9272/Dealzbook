@@ -39,7 +39,7 @@ class StoreRepository implements StoreRepositoryInterface
             $stores =collect();
 
             foreach ($city_stores as $store){
-                $store = Store::where('id', $store)->get();
+                $store = Store::where('id', $store)->where('status',1)->get();
                 $stores->push($store);
             }
 
@@ -56,7 +56,7 @@ class StoreRepository implements StoreRepositoryInterface
             $stores =collect();
 
             foreach ($city_stores as $store){
-                $store = Store::where('id', $store)->get();
+                $store = Store::where('id', $store)->where('status',1)->get();
                 $stores->push($store);
             }
 

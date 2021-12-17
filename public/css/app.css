@@ -8088,7 +8088,9 @@ button.bg-dark:focus {
 .my-2 {
   margin-top: 0.5rem !important;
 }
-
+.mt-30{
+  margin-top: 30px;
+}
 .mr-2,
 .mx-2 {
   margin-right: 0.5rem !important;
@@ -11770,4 +11772,84 @@ transition-delay:.2s;
     background-color: #00759f;
     color: #fff;
     box-shadow: 2px 2px 7px rgb(0 0 0 / 40%);
+}
+.bot-box{
+  display: inline-flex !important;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.coupon-card{
+  box-shadow: 0 10px 92px 0 rgb(0 0 0 / 13%);
+    /* padding: 0px 5px 21px 0px; */
+    border-radius: 10px;
+}
+.coupon-detail{
+      padding: 7px 8px 15px
+}
+.couponname  {
+ margin: 0px;
+     min-height: 75px;
+}
+.coupon-img{
+ min-height: 195px;
+}
+.coupon-img img{
+  /*height: auto;*/
+  border-radius: 10px 10px 0px 0px;
+
+}
+.ttgg{
+    width: 100%;
+    border: 2px solid black;
+    padding: 4px 3px;
+    margin: 1px;
+    border-radius: 25px;
+}
+.coupon-btn{
+    background: black;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 25px;
+    margin: 0px;
+    text-align: center;
+    cursor: pointer;
+}
+.left-tgg{
+  width: 50%;
+  align-self: center;
+}
+.left-tgg input{
+    text-align: center;
+    width: 98%;
+    border: none;
+
+}
+.left-tgg input:focus{
+    outline: none;
+}
+.right-tgg{
+    border-left: 2px solid black;
+    padding-left: 30px;
+    width: 60%;
+    border-left-style: dotted;
+}
+.cp-rbn{
+     margin: 13px 0 0 -3px;
+}
+.cpd-btn{
+      background: black;
+    color: white;
+    border: none;
+    padding: 6px 13px;
+}
+.no-bor{
+  border: none;
+}
+.no-bor:focus{
+    outline: none !important;
 }

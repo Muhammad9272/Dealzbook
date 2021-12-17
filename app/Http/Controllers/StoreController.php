@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Catalog;
 use App\Repositories\Interfaces\AdvertisementRepositoryInterface;
 use App\Repositories\Interfaces\CatalogRepositoryInterface;
 use App\Repositories\Interfaces\CityRepositoryInterface;
@@ -108,7 +109,10 @@ class StoreController extends Controller
     {
 
         $this->setLocale($request);
-
+        $store_catalogs=Catalog::where('store_id',$store->id)
+                                ->where('status',1)
+                                ->orderBy('featured', 'DESC')
+                                ->orderBy('created_at', 'DESC')->get();
         return view('pages.store.show',[
             'store' => $store,
             'in_cities' =>  $this->storeRepository->availableInCities($store),
@@ -117,7 +121,7 @@ class StoreController extends Controller
             'recent_countries' => $this->countryRepository->get($limit=5),
             'all_countries' => $this->countryRepository->all(),
             'page_description' => $store->page,
-            'store_catalogs' => $store->catalogs,
+            'store_catalogs' => $store_catalogs,
             'store_left_sections' => $this->advertisementRepository->get('side-banner1'),
             'store_right_sections' => $this->advertisementRepository->get('side-banner2'),
 

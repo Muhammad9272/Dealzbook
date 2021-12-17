@@ -17,7 +17,8 @@ class CatalogRepository implements CatalogRepositoryInterface
 
         if($tag && $tag == 'newest'){
             return Catalog::where('status', 1)
-                            ->orderBy('created_at', 'desc')
+                            ->orderBy('featured', 'DESC')
+                            ->orderBy('created_at', 'DESC')
                                 ->paginate(20);
         }
         else if($tag){
@@ -25,28 +26,32 @@ class CatalogRepository implements CatalogRepositoryInterface
             return $tag->catalogs->paginate(20);
         }
 
-        return Catalog::where('status', 1)->paginate(20);
+        return Catalog::where('status', 1)->orderBy('featured', 'DESC')
+                ->orderBy('created_at', 'DESC')->paginate(20);
     }
 
     public function latest( $limit = 12, $city=null, $country = null)
     {
         if($city != null){
             return Catalog::where('status', 1)
-                ->latest()
+                ->orderBy('featured', 'DESC')
+                ->orderBy('created_at', 'DESC')
                 ->where('city_id', $city->id)
                 ->limit($limit)
                 ->where('status',1)
                 ->get();
         }else if($country != null){
             return Catalog::where('status', 1)
-                ->latest()
+                ->orderBy('featured', 'DESC')
+                ->orderBy('created_at', 'DESC')
                 ->where('country_id', $country->id)
                 ->limit($limit)
                 ->where('status',1)
                 ->get();
         }else{
             return Catalog::where('status', 1)
-                ->latest()
+                ->orderBy('featured', 'DESC')
+                ->orderBy('created_at', 'DESC')
                 ->limit($limit)
                 ->where('status',1)
                 ->get();
@@ -59,6 +64,8 @@ class CatalogRepository implements CatalogRepositoryInterface
         return Catalog::where('status', 1)
             ->where('name', 'LIKE', "%$name%")
             ->orWhere('description', 'LIKE', "%$name%")
+            ->orderBy('featured', 'DESC')
+            ->orderBy('created_at', 'DESC')
             ->paginate(20);
     }
 

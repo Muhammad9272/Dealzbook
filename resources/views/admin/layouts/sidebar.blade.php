@@ -52,6 +52,13 @@
                 </a>
             </li>
 
+            <li class="nav-item start ">
+                <a href="{{route('admin-coupon-index')}}" >
+                    <i class="fa fa-folder"></i>
+                    <span class="title">Coupons</span>                    
+                </a>
+            </li>
+
   
             <li class="nav-item start ">
                 <a href="{{route('admin-banners-index')}}" >

@@ -137,6 +137,49 @@ $(document).ready(function() {
               ['custom', ['picture', 'filemanager']]
           ],
       });
+      $('.pg_summernote3').summernote({
+          height: ($(window).height() - 300),
+          focus: true,
+          dialogsInBody: true,
+          buttons: {
+              filemanager: filemanager.btnSummernote
+          },
+          toolbar: [
+              ['style', ['bold', 'italic', 'underline']],
+              ['color', ['color']],
+              ['para', ['ul', 'ol', 'paragraph']],
+              ['fontsize', ['fontsize']],
+              ['style', ['bold', 'italic', 'underline', 'clear']],
+              ['font', ['strikethrough', 'superscript', 'subscript']],
+              ['height', ['height']],            
+              ['table', ['table']],
+              ['view', ['fullscreen', 'codeview', 'help']],
+
+              ['custom', ['picture', 'filemanager']]
+          ],
+      });
+      $('.pg_summernote4').summernote({
+          height: ($(window).height() - 300),
+          focus: true,
+          dialogsInBody: true,
+          buttons: {
+              filemanager: filemanager.btnSummernote
+          },
+          toolbar: [
+              ['style', ['bold', 'italic', 'underline']],
+              ['color', ['color']],
+              ['para', ['ul', 'ol', 'paragraph']],
+              ['fontsize', ['fontsize']],
+              ['style', ['bold', 'italic', 'underline', 'clear']],
+              ['font', ['strikethrough', 'superscript', 'subscript']],
+              ['height', ['height']],            
+              ['table', ['table']],
+              ['view', ['fullscreen', 'codeview', 'help']],
+
+              ['custom', ['picture', 'filemanager']]
+          ],
+      });
+
       window.addEventListener('filemanager.select', function (e) {
           var data = e.detail.data;
           $(data.note).summernote('editor.insertImage', data.absolute_url)

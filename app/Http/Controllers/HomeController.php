@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\About;
 use App\Country;
+use App\Coupon;
 use App\Home;
 use App\Repositories\BannerRepository;
 use App\Repositories\Interfaces\AdvertisementRepositoryInterface;
@@ -97,10 +98,13 @@ class HomeController extends Controller
         $stores = $this->storeRepository->all(null,$country);
         $latest_catalogs = $this->catalogRepository->latest(12, null, $country);
         $popular_catalogs =  $this->catalogRepository->popular(15, null, $country);
+        $coupons=Coupon::where('status',1)->orderBy('featured', 'DESC')
+                            ->orderBy('created_at', 'DESC')->take(12)->get();
 
         $featured_catalogs = $this->catalogRepository->featured();
         return view('home',[
             'stores' => $stores,
+            'coupons'=>$coupons,
             'latest_catalogs' => $latest_catalogs,
             'popular_catalogs' => $popular_catalogs,
             'featured_catalogs' => $featured_catalogs,

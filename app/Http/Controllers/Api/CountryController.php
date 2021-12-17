@@ -43,6 +43,8 @@ class CountryController extends Controller
                             ->addColumn('action', function(Country $data) {
                                 return '<div class="action-list">
                                 <a data-href="' . route('admin-country-edit',$data->id) . '"  data-toggle="modal" data-target="#modal1"  class="btn btn-outline btn-sm blue edit"> <i class="fa fa-edit"></i>Edit</a>
+                                 <a data-href="'.route('admin-country-delete',$data->id).'" class="btn btn-outline delete-data  btn-sm red" data-toggle="confirmation" data-placement="top" data-id="'.$data->id.'" >
+                                    <i class="fa fa-trash"></i> Delete </a>
                                 
                                 </div>
 
@@ -188,6 +190,15 @@ class CountryController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $data = Country::findOrFail($id);
+         if($data->city->count()>0)
+        {
+            //--- Redirect Section
+            $msg = 'Remove the Related Cities first !';
+            return response()->json($msg);
+            //--- Redirect Section Ends
+        }
+        $data->delete();
+        return response()->json("Data deleted Successfully !");
     }
 }

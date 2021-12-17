@@ -35,6 +35,9 @@
                     <li class="@if(request()->path() == 'catalogs') active @endif nav-item">
                         <a class="nav-link" href="/{{ session('locale') }}/catalogs">{{ trans('index.catalogs')}}</a>
                     </li>
+                    <li class="@if(request()->path() == 'coupons') active @endif nav-item">
+                        <a class="nav-link" href="/{{ session('locale') }}/coupons">{{ trans('index.coupons')}}</a>
+                    </li>
                     <li class="@if(request()->path() == 'stores') active @endif nav-item">
                         <a class="nav-link" href="/{{ session('locale') }}/stores">{{ trans('index.stores')}}</a>
                     </li>
@@ -249,10 +252,14 @@
                     <li class="@if(request()->path() == 'stores') active @endif nav-item">
                         <a class="nav-link" href="/{{ session('locale') }}/stores">{{ trans('index.stores')}}</a>
                     </li>
+                     <li class="@if(request()->path() == 'coupons') active @endif nav-item">
+                        <a class="nav-link" href="/{{ session('locale') }}/coupons">{{ trans('index.coupons')}}</a>
+                    </li>
 
                     <li class="@if(request()->path() == 'catalogs') active @endif nav-item">
                         <a class="nav-link" href="/{{ session('locale') }}/catalogs">{{ trans('index.catalogs')}}</a>
                     </li>
+
 
                     <li class="@if(request()->path() == '/') active @endif  nav-item">
                         <a class="nav-link" href="/">{{ trans('index.home')}} </a>

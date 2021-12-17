@@ -28,6 +28,13 @@
                         </a>
                     </li>
                     <li>
+                        <a href="/{{ session('locale') }}/coupons">
+                            <div>
+                                {{ trans('index.coupons')}}
+                            </div>
+                        </a>
+                    </li>
+                    <li>
                         <a href="/{{session('locale')}}/about-us">
                             <div>
                                 {{ trans('index.about')}}
@@ -352,6 +359,13 @@
                         <a href="/{{ session('locale') }}/catalogs">
                             <div>
                                 {{ trans('index.catalogs')}}
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/{{ session('locale') }}/coupons">
+                            <div>
+                                {{ trans('index.coupons')}}
                             </div>
                         </a>
                     </li>

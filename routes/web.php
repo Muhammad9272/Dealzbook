@@ -36,7 +36,7 @@ Route::group([
   Route::get('/country/edit/{id}', 'CountryController@edit')->name('admin-country-edit');
   Route::post('/country/edit/{id}', 'CountryController@update')->name('admin-country-update');
   Route::get('/country/status/{id1}/{id2}', 'CountryController@status')->name('admin-country-status');
-  // Route::get('/country/delete/{id}', 'CountryController@destroy')->name('admin-country-delete');
+  Route::get('/country/delete/{id}', 'CountryController@destroy')->name('admin-country-delete');
 
 
   Route::get('/city/datatables', 'CityController@datatables')->name('admin-city-datatables'); //JSON REQUEST
@@ -46,6 +46,7 @@ Route::group([
   Route::get('/city/edit/{id}', 'CityController@edit')->name('admin-city-edit');
   Route::post('/city/edit/{id}', 'CityController@update')->name('admin-city-update');
   Route::get('/city/status/{id1}/{id2}', 'CityController@status')->name('admin-city-status');
+  Route::get('/city/delete/{id}', 'CityController@destroy')->name('admin-city-delete');
 
 
   Route::get('/store/datatables', 'StoreController@datatables')->name('admin-store-datatables'); //JSON REQUEST
@@ -107,6 +108,21 @@ Route::group([
   Route::get('/catalogs/status/{id1}/{id2}', 'CatalogController@status')->name('admin-catalogs-status');
    Route::get('/catalogs/featured/{id1}/{id2}', 'CatalogController@featured')->name('admin-catalogs-featured');
   Route::get('/load/branch/{id}/', 'CatalogController@load')->name('admin-branch-load'); //JSON REQUEST
+   Route::get('/catalogs/delete/{id}', 'CatalogController@destroy')->name('admin-catalogs-delete');
+
+
+
+
+  Route::get('/coupons/datatables', 'CouponController@datatables')->name('admin-coupon-datatables'); //JSON REQUEST
+  Route::get('/coupons', 'CouponController@index')->name('admin-coupon-index');
+  Route::get('/coupons/create', 'CouponController@create')->name('admin-coupon-create');
+  Route::post('/coupons/create', 'CouponController@store')->name('admin-coupon-store');
+  Route::get('/coupons/edit/{id}', 'CouponController@edit')->name('admin-coupon-edit');
+  Route::post('/coupons/edit/{id}', 'CouponController@update')->name('admin-coupon-update');
+  Route::get('/coupons/status/{id1}/{id2}', 'CouponController@status')->name('admin-coupon-status');
+   Route::get('/coupons/featured/{id1}/{id2}', 'CouponController@featured')->name('admin-coupon-featured');
+  Route::get('/load/branch/{id}/', 'CouponController@load')->name('admin-branch-load'); //JSON REQUEST
+   Route::get('/coupons/delete/{id}', 'CouponController@destroy')->name('admin-coupon-delete');
 
 
 
@@ -127,6 +143,7 @@ Route::group([
   Route::get('/blogs/edit/{id}', 'BlogController@edit')->name('admin-blogs-edit');
   Route::post('/blogs/edit/{id}', 'BlogController@update')->name('admin-blogs-update');
   Route::get('/blogs/status/{id1}/{id2}', 'BlogController@status')->name('admin-blogs-status');
+  Route::get('/blogs/delete/{id}', 'BlogController@destroy')->name('admin-blogs-delete');
 
  
   Route::get('/banners/datatables', 'BannerController@datatables')->name('admin-banners-datatables'); //JSON REQUEST
@@ -279,6 +296,7 @@ Route::middleware(['locale'])->group(function () {
     Route::get('/store/{store}', 'StoreController@show');
 
     Route::get('/catalogs', 'CatalogController@index');
+    Route::get('/coupons', 'CouponController@index');
 
     Route::get('/blog', 'BlogController@index');
 
@@ -297,9 +315,13 @@ Route::prefix('/{lang}')->group(function () {
 
     Route::get('/stores', 'StoreController@index');
     Route::get('/store/{store}', 'StoreController@show');
+
     Route::get('/catalog/{catalog}', 'CatalogController@show')->middleware('cors');
 
     Route::get('/catalogs', 'CatalogController@index');
+
+    Route::get('/coupons', 'CouponController@index');
+    Route::get('/coupon/{coupon}', 'CouponController@show')->middleware('cors');
 
     Route::get('/blog', 'BlogController@index');
     Route::get('/blog/{blog}', 'BlogController@show');

@@ -211,7 +211,7 @@
       </div>
       <div class="row catalogContainer">
          <div class="storeLeftSideBar col-sm-6">
-            <div class="catalogInfo">
+            {{-- <div class="catalogInfo">
                <div class="row">
                   <div class="col-6 col-sm-8">
                      <p class="fontMada">
@@ -279,7 +279,7 @@
                </div>
                @endif
 
-               {{-- @if( $catalog->attachments && count(json_decode($catalog->attachments) ))
+               @if( $catalog->attachments && count(json_decode($catalog->attachments) ))
                <div class="row">
                   <div class="col-md-12 pdfdv">
                       @foreach(json_decode($catalog->attachments) as $key=>$attachment)
@@ -287,9 +287,9 @@
                       @endforeach
                   </div>
                </div>
-               @endif --}}
+               @endif
 
-            </div>
+            </div> --}}
          </div>
          <div class="storeContentSection col-sm-6">
             {!! $catalog->description !!}
@@ -640,7 +640,7 @@
       </div>
       <div class="row catalogContainer">
          <div class="storeLeftSideBar col-sm-6">
-            <div class="catalogInfo">
+            {{-- <div class="catalogInfo">
                <div class="row">
                   <div class="col-sm-8">
                      <p class="fontMada">
@@ -706,7 +706,7 @@
                   </div>
                </div>
                @endif
-               {{-- @if( $catalog->attachments && count(json_decode($catalog->attachments) ))
+               @if( $catalog->attachments && count(json_decode($catalog->attachments) ))
                <div class="row">
                   <div class="col-md-12 pdfdv">
                       @foreach(json_decode($catalog->attachments) as $key=>$attachment)
@@ -714,10 +714,10 @@
                       @endforeach
                   </div>
                </div>
-               @endif --}}
+               @endif
 
 
-            </div>
+            </div> --}}
          </div>
          <div class="storeContentSection col-sm-6">
             {!! $catalog->description !!}

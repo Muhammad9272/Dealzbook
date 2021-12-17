@@ -13,6 +13,13 @@ return [
     'language' => 'اللغة',
     'featured'=>'متميز',
     'view'=>'مشاهدة  ',
+
+    'coupons' => 'كوبونات  ', 
+    'coupon' => 'قسيمة ', 
+    'coupon_link' => 'رابط القسيمة ',
+    'copy_code'=>'رمز النسخ ' ,
+    'the_latest_coupons' => 'أحدث الكوبونات  ',
+    
     'the_latest_catalogs' => 'أحدث العروض',
     'the_most_popular_catalogs' => 'أشهر العروض',
     'the_most_popular_blogs' => 'أشهر المدونات',

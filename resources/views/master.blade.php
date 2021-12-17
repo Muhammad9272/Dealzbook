@@ -50,6 +50,23 @@
           })
        })
     </script>
+
+    <script type="text/javascript">  
+        function copyreferlink($id) {
+        /* Get the text field */
+        var target ="referlink"+$id;
+
+        var copyText = document.getElementById(target);
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+
+      }
+    </script>
   
 
 

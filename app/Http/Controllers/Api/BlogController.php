@@ -45,6 +45,8 @@ class BlogController extends Controller
                             ->addColumn('action', function(Blog $data) {
                                 return '<div class="action-list">
                                 <a data-href="' . route('admin-blogs-edit',$data->id) . '"  data-toggle="modal" data-target="#modal1"  class="btn btn-outline btn-sm blue edit"> <i class="fa fa-edit"></i>Edit</a>
+                                <a data-href="'.route('admin-blogs-delete',$data->id).'" class="btn btn-outline delete-data  btn-sm red" data-toggle="confirmation" data-placement="top" data-id="'.$data->id.'" >
+                                    <i class="fa fa-trash"></i> Delete </a>
                                 
                                 </div>
 
@@ -250,6 +252,8 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+          $data = Blog::findOrFail($id);
+          $data->delete();
+          return response()->json("Data deleted Successfully !");
     }
 }

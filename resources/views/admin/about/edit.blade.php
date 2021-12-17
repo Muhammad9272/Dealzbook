@@ -34,7 +34,7 @@
                         <div class="form-group last">
                             <label class="control-label col-md-3">Small Detail</label>
                             <div class="col-md-8">
-                                  <textarea name="small_detail" class="nic-simple form-control" style="width: 100%;">
+                                  <textarea name="small_detail" class="pg_summernote4" style="width: 100%;">
                                     {!! $data->small_detail !!}
                                   </textarea>
                             </div>
@@ -90,7 +90,7 @@
                         <div class="form-group last">
                             <label class="control-label col-md-3">Small Detail</label>
                             <div class="col-md-8">
-                                  <textarea name="arabic_small_detail" class="nic-simple form-control" style="width: 100%;">
+                                  <textarea name="arabic_small_detail" class="pg_summernote3" style="width: 100%;">
                                     {!! $data->getTranslation('small_detail', 'ar') !!}
                                   </textarea>
                             </div>

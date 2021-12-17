@@ -77,8 +77,10 @@
             @endif
         @endforeach
 
+        <h2 class="d-none d-sm-block @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_latest_coupons') }}</h2>
+        <h2 class="d-block d-sm-none textAlignCenter @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_latest_coupons') }}</h2>
         <!-- popular catalogs -->
-        @include('partials/catalogs/popular')
+        @include('partials/coupons/latest')
         <!-- popular catalogs end-->
 
         <!-- advertisements -->
