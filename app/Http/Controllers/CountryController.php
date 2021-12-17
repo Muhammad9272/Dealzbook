@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\About;
 use App\City;
 use App\Country;
+use App\Coupon;
 use App\Home;
 use App\Repositories\Interfaces\AdvertisementRepositoryInterface;
 use App\Repositories\Interfaces\BannerRepositoryInterface;
@@ -78,11 +79,15 @@ class CountryController extends Controller
     {
         
         $this->setLocale($request);
+        $coupons=Coupon::where('status',1)->orderBy('featured', 'DESC')
+                            ->orderBy('created_at', 'DESC')->take(12)->get();
+
         if($country=="all"){
             $stores = $this->storeRepository->all();
             $latest_catalogs = $this->catalogRepository->latest(12);
             $popular_catalogs =  $this->catalogRepository->popular();
             return view('home',[
+                'coupons' => $coupons,
                 'stores' => $stores,
                 'latest_catalogs' => $latest_catalogs,
                 'popular_catalogs' => $popular_catalogs,
@@ -111,6 +116,7 @@ class CountryController extends Controller
 
 
             return view('home',[
+                'coupons' => $coupons,
                 'stores' => $stores,
                 'latest_catalogs' => $latest_catalogs,
                 'popular_catalogs' => $popular_catalogs,
