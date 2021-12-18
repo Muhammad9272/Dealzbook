@@ -113,7 +113,7 @@ class Catalog extends Model
     public function expired()
     {
         $time=Carbon::now();
-        if($this->end_at && $this->end_at<=$time){
+        if($this->end_at && Carbon::parse($this->getTranslation('end_at', 'en') )->addDay(1)<=$time){
             return true;
         }
         else{

@@ -18,6 +18,7 @@ return [
     'coupon' => 'coupon', 
     'coupon_link' => 'Coupon Link', 
     'copy_code'=>'Copy Code',
+    'click_here'=>'Click here',
 
     'the_latest_coupons' => 'The Latest Coupons',
     'the_latest_catalogs' => 'The latest catalogs',

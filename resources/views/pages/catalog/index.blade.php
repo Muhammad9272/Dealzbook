@@ -165,13 +165,11 @@
                                         @endif --}}
                                         @if(session('locale') == 'en')
                                           {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
+                                          {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
                                         @else
                                         {{$catalog->start_at}}
                                         @endif
-                                        @if(!$catalog->end_at  && session('locale') == 'en')
-                                            
-                                            {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
-                                        @endif
+                                        
 
 
                                         @if($catalog->end_at && session('locale') == 'en')

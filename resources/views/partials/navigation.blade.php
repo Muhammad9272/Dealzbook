@@ -10,10 +10,10 @@
 
     <nav class="customMainNav navbar navbar-expand-lg navbar-dark primary-color">
         <div class="container">
-            <div class="flex">
+            <div class="flex" style="width: 30%;"> 
                 <!-- Navbar brand -->
                 <a class="navbar-brand" href="/">
-                    <img src="{{asset('assets/images/'.$gs->logo)}}" />
+                    <img style="width:70%" src="{{asset('assets/images/'.$gs->logo)}}" />
                 </a>
 
                 <!-- Collapse button -->
@@ -271,8 +271,8 @@
             <!-- Collapsible content -->
 
             <!-- Navbar brand -->
-            <a class="d-none d-sm-block navbar-brand textAlignRight" href="/">
-                <img src="{{asset('assets/images/'.$gs->logo)}}" />
+            <a class="d-none d-sm-block navbar-brand textAlignRight" href="/" style="width:30%">
+                <img style="width:70%" src="{{asset('assets/images/'.$gs->logo)}}" />
             </a>
             <!-- Navbar brand end-->
 

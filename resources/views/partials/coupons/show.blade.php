@@ -175,25 +175,6 @@
             <div class="storeLogo">
                
                <h2 class="@if(session('locale') == 'ar') textAlignRight @endif">{{ strtoupper($coupon->name) }}</h2>
-               @if($coupon->link)
-               <div class="@if(session('locale') == 'ar') textAlignRight @endif">
-                  <h3 class="d-inline-flex">
-                     {{ trans('index.coupon_link') }} : <a style="margin:0" href="{{$coupon->link}}">{{$coupon->link}}</a>
-                  </h3>
-                  
-               </div>
-               @endif
-               @if($coupon->coupon_code)
-               <div class="@if(session('locale') == 'ar') textAlignRight @endif">
-                  <h3 class="d-inline-flex">
-                     <div><button onclick="copyreferlink({{$coupon->id}})" class="cpd-btn">{{ trans('index.copy_code') }}</button></div> &nbsp;
-                      <input class="no-bor" id="referlink{{$coupon->id}}" type="text" name="" value="{{$coupon->coupon_code}}">
-                  </h3>
-                  
-               </div>
-               @endif
-
-
             </div>
          </div>
          <div class="storeContentSection col-sm-6 catalogHeaderTwo">
@@ -227,7 +208,40 @@
          </div>
       </div>
       <div class="row catalogHeaderTwo">
-         {!! $coupon->description !!}
+         <div class="row">
+            <div class="col-md-6">
+               <img src="{{$coupon->image}}">
+            </div>
+             <div class="col-md-6">
+                {!! $coupon->description !!}
+
+                 @if($coupon->link)
+                  <div class="@if(session('locale') == 'ar') textAlignRight @endif">
+                     <h3 class="d-inline-flex">
+                        {{ trans('index.coupon_link') }} : <a style="margin:0" href="{{$coupon->link}}">{{trans('index.click_here')}}</a>
+                     </h3>
+                     
+                  </div>
+                  @endif
+                  @if($coupon->coupon_code)
+                  <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+                     <div class="ttgg d-inline-flex">
+                           <div class="left-tgg">
+                                <input  type="text" id="referlink1001" value="{{$coupon->coupon_code}}">
+                           </div>
+                           <div class="right-tgg">
+                               <p class="coupon-btn" onclick="copyreferlink(1001)">{{ trans('index.copy_code') }}</p>
+                           </div>
+                     </div>                     
+
+                  </div>
+
+                  @endif
+
+
+             </div>
+         </div>
+         
       </div>
       
    </div>
@@ -290,33 +304,48 @@
          <div class="storeLeftSideBar col-sm-6">
             <div class="storeLogo">
                <h2 class="@if(session('locale') == 'ar') textAlignRight @endif">{{ strtoupper($coupon->name) }}</h2>
-               @if($coupon->link)
-               <div class="@if(session('locale') == 'ar') textAlignRight @endif">
-                  <h3 class="d-inline-flex">
-                      <a style="margin:0" href="{{$coupon->link}}">{{$coupon->link}}</a>
-                       &nbsp;: {{ trans('index.coupon_link') }} 
-                  </h3>
-                  
-               </div>
-               @endif
-
-              @if($coupon->coupon_code)
-               <div class="@if(session('locale') == 'ar') textAlignRight @endif">
-                  <h3 class="d-inline-flex">
-                     
-                      <input  class="textAlignRight no-bor" id="referlink{{$coupon->id}}" type="text"  value="{{$coupon->coupon_code}}">&nbsp;
-                      <div><button onclick="copyreferlink({{$coupon->id}})" class="cpd-btn">{{ trans('index.copy_code') }}</button></div> 
-                  </h3>
-                  
-               </div>
-               @endif
-
             </div>
          </div>
       </div>
+
       <div class="row catalogHeaderTwo">
-         {!! $coupon->description !!}
-      </div>
+         <div class="row">
+            <div class="col-md-6">
+               <img src="{{$coupon->image}}">
+            </div>
+             <div class="col-md-6">
+                {!! $coupon->description !!}
+
+                 @if($coupon->link)
+                  <div class="@if(session('locale') == 'ar') textAlignRight @endif">
+                     <h3 class="d-inline-flex">
+                        <a style="margin:0" href="{{$coupon->link}}">{{trans('index.click_here')}}</a> :
+                        {{ trans('index.coupon_link') }} 
+                     </h3>
+                     
+                  </div>
+                  @endif
+                  @if($coupon->coupon_code)
+                  <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6" style="float: right;">
+                     <div class="ttgg d-inline-flex">
+                           <div class="left-tgg">
+                                <input  type="text" id="referlink1001" value="{{$coupon->coupon_code}}">
+                           </div>
+                           <div class="right-tgg">
+                               <p class="coupon-btn" onclick="copyreferlink(1001)">{{ trans('index.copy_code') }}</p>
+                           </div>
+                     </div>                     
+
+                  </div>
+
+                  @endif
+
+
+             </div>
+         </div>         
+      </div>      
+
+
       
    </div>
    

@@ -37,10 +37,10 @@ class CouponController extends Controller
                                 return $data->name;
                              })
                             ->editColumn('store_id', function(Coupon $data) {
-                                return $data->store->name;
+                                return $data->store?$data->store->name:'';
                              })
                             ->editColumn('country_id', function(Coupon $data) {
-                                return $data->country->name;
+                                return $data->country?$data->country->name:'';
                              })
                            
                             ->addColumn('featured', function(Coupon $data) {

@@ -13,11 +13,12 @@ return [
     'language' => 'اللغة',
     'featured'=>'متميز',
     'view'=>'مشاهدة  ',
-
+     
+    'click_here'=>'اضغط هنا  ', 
     'coupons' => 'كوبونات  ', 
     'coupon' => 'قسيمة ', 
     'coupon_link' => 'رابط القسيمة ',
-    'copy_code'=>'رمز النسخ ' ,
+    'copy_code'=>'نسخ الكود  ' ,
     'the_latest_coupons' => 'أحدث الكوبونات  ',
     
     'the_latest_catalogs' => 'أحدث العروض',
