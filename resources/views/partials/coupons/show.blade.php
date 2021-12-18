@@ -257,7 +257,9 @@
    @endif
    {{--        ========================= tags end =====================--}}
    <!-- latest catalogs -->
-   <h2 class="text-3xl mt-8 @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_latest_coupons') }}</h2>
+   <h2 class="text-3xl mt-8 @if(session('locale') == 'ar') textAlignRight @endif">
+       <a class="nd-link" href="/{{ session('locale') }}/coupons"> {{ trans('index.the_latest_coupons') }}</a>
+   </h2>
    @include('partials/coupons/latest')
    <!-- latest catalogs end-->
 </div>
@@ -358,7 +360,7 @@
    @endif
    {{--        ========================= tags end =====================--}}
    <!-- latest catalogs -->
-   <h2 class="text-3xl mt-8 @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_latest_coupons') }}</h2>
+   <h2 class="text-3xl mt-8 @if(session('locale') == 'ar') textAlignRight @endif"> <a class="nd-link" href="/{{ session('locale') }}/coupons"> {{ trans('index.the_latest_coupons') }}</a></h2>
    @include('partials/coupons/latest')
    <!-- latest catalogs end-->
 </div>

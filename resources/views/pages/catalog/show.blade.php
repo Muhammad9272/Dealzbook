@@ -588,7 +588,9 @@
    </div>
    {{--        ========================= tags end =====================--}}
    <!-- latest catalogs -->
-   <h2 class="text-3xl mt-8 @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_latest_catalogs') }}</h2>
+   <h2 class="text-3xl mt-8 @if(session('locale') == 'ar') textAlignRight @endif">
+      <a class="nd-link" href="/{{ session('locale') }}/catalogs">{{ trans('index.the_latest_catalogs') }}</a>
+   </h2>
    @include('partials/catalogs/latest')
    <!-- latest catalogs end-->
 </div>
@@ -1014,7 +1016,7 @@
    </div>
    {{--        ========================= tags end =====================--}}
    <!-- latest catalogs -->
-   <h2 class="text-3xl mt-8 @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_latest_catalogs') }}</h2>
+   <h2 class="text-3xl mt-8 @if(session('locale') == 'ar') textAlignRight @endif"><a class="nd-link" href="/{{ session('locale') }}/catalogs">{{ trans('index.the_latest_catalogs') }}</a></h2>
    @include('partials/catalogs/latest')
    <!-- latest catalogs end-->
 </div>
