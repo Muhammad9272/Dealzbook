@@ -2,6 +2,11 @@
     .navbar-brand img{
         width: 50%;
     }
+    @media (max-width: 576px) {
+       .thi-flex{
+        width: unset !important;
+       }
+    }
 
 </style>
 
@@ -10,7 +15,7 @@
 
     <nav class="customMainNav navbar navbar-expand-lg navbar-dark primary-color">
         <div class="container">
-            <div class="flex" style="width: 30%;"> 
+            <div class="flex thi-flex" style="width: 30%;"> 
                 <!-- Navbar brand -->
                 <a class="navbar-brand" href="/">
                     <img style="width:70%" src="{{asset('assets/images/'.$gs->logo)}}" />
