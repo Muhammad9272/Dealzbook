@@ -34,6 +34,13 @@
           .cat-box-s .hovereffect, .cat-box-s .hovereffect1{
             cursor: pointer !important;
           }
+          .nd-link{
+              color: black;
+          }
+           .nd-link:hover{
+
+             text-decoration: none !important;
+          }
          /* .customMainNav .container .flex{
            
           }

@@ -54,8 +54,8 @@
         <!-- featured catalogs end-->
 
         <!-- latest catalogs -->
-        <h2 class="d-none d-sm-block text-3xl mt-8 mb-40 @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_latest_catalogs') }}</h2>
-        <h2 class="d-block d-sm-none textAlignCenter text-3xl mt-8 mb-40 textAlignCenter @if(session('locale') == 'ar')  @endif">{{ trans('index.the_latest_catalogs') }}</h2>
+        <h2 class="d-none d-sm-block text-3xl mt-8 mb-40 @if(session('locale') == 'ar') textAlignRight @endif"><a class="nd-link" href="/{{ session('locale') }}/catalogs">{{ trans('index.the_latest_catalogs') }}</a></h2>
+        <h2 class="d-block d-sm-none textAlignCenter text-3xl mt-8 mb-40 textAlignCenter @if(session('locale') == 'ar')  @endif"><a class="nd-link" href="/{{ session('locale') }}/catalogs">{{ trans('index.the_latest_catalogs') }}</a></h2>
         @include('partials/catalogs/latest')
         <!-- latest catalogs end-->
 
@@ -77,8 +77,10 @@
             @endif
         @endforeach
 
-        <h2 class="d-none d-sm-block @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_latest_coupons') }}</h2>
-        <h2 class="d-block d-sm-none textAlignCenter @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.the_latest_coupons') }}</h2>
+        <h2 class="d-none d-sm-block @if(session('locale') == 'ar') textAlignRight @endif">
+        <a class="nd-link" href="/{{ session('locale') }}/coupons"> {{ trans('index.the_latest_coupons') }}</a>
+        </h2>
+        <h2 class="d-block d-sm-none textAlignCenter @if(session('locale') == 'ar') textAlignRight @endif"><a class="nd-link" href="/{{ session('locale') }}/coupons"> {{ trans('index.the_latest_coupons') }}</a></h2>
         <!-- popular catalogs -->
         @include('partials/coupons/latest')
         <!-- popular catalogs end-->
