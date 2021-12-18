@@ -208,11 +208,11 @@
          </div>
       </div>
       <div class="row catalogHeaderTwo">
-         <div class="row">
+
             <div class="col-md-6">
                <img src="{{$coupon->image}}">
             </div>
-             <div class="col-md-6">
+            <div class="col-md-6">
                 {!! $coupon->description !!}
 
                  @if($coupon->link)
@@ -239,8 +239,8 @@
                   @endif
 
 
-             </div>
-         </div>
+            </div>
+
          
       </div>
       
@@ -309,11 +309,10 @@
       </div>
 
       <div class="row catalogHeaderTwo">
-         <div class="row">
             <div class="col-md-6">
                <img src="{{$coupon->image}}">
             </div>
-             <div class="col-md-6">
+            <div class="col-md-6">
                 {!! $coupon->description !!}
 
                  @if($coupon->link)
@@ -341,8 +340,7 @@
                   @endif
 
 
-             </div>
-         </div>         
+             </div>        
       </div>      
 
 
