@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('title', ': Blog')
-@section('image',(isset($blogs)?preg_replace('/\s+/','%20',$blogs->first()->image):''))
+@section('image',($blogs->count()>0?preg_replace('/\s+/','%20',$blogs->first()->image):''))
 
 @section('content')
 
