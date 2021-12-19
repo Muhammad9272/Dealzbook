@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('title', '— Catalogs & Offers')
-@section('image',(isset($catalogs)?preg_replace('/\s+/','%20',$catalogs->first()->images()->where('featured',1)->first()->image):''))
+@section('image',($catalogs->count()>0?preg_replace('/\s+/','%20',$catalogs->first()->images()->where('featured',1)->first()->image):''))
 
 @section('content')
 
