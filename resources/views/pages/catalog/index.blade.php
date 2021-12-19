@@ -1,8 +1,10 @@
 @extends('master')
 
 @section('title', '— Catalogs & Offers')
+@section('image',(isset($catalogs)?preg_replace('/\s+/','%20',$catalogs->first()->images()->where('featured',1)->first()->image):''))
 
 @section('content')
+
     
     <a href="{{$top_banner->url}}">
         <img src="{{$top_banner->image}}" class="d-block w-100" alt="...">

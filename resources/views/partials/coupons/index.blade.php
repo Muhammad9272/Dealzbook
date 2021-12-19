@@ -1,6 +1,8 @@
 @extends('master')
 
 @section('title', '— Coupons')
+@section('image',(isset($coupons)?preg_replace('/\s+/','%20',$coupons->first()->image):''))
+
 
 @section('content')
     

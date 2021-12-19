@@ -1,6 +1,7 @@
 @extends('master')
 @section('title', '— '.  $coupon->seoTags->title  )
 @section('description', $coupon->seoTags->description  )
+@section('image',(isset($coupon)?preg_replace('/\s+/','%20',$coupon->image):''))
 @section('content')
 <script type="text/javascript" src="{{ asset('js/3d-flip-book/js/libs/jquery.min.js') }}"></script>
 {{--  <script src="{{ asset('js/3d-flip-book/js/libs/html2canvas.min.js') }}" ></script> 

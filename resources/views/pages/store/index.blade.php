@@ -1,5 +1,5 @@
 @extends('master')
-
+@section('image',(isset($stores)?preg_replace('/\s+/','%20',$stores->first()->image):''))
 @section('title', ': Stores')
 
 @section('content')

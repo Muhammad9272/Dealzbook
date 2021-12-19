@@ -1,6 +1,7 @@
 @extends('master')
 @section('title', '— '.  $catalog->seoTags->title  )
 @section('description', $catalog->seoTags->description  )
+@section('image',(isset($catalog)?preg_replace('/\s+/','%20',$catalog->images()->where('featured',1)->first()->image):''))
 @section('content')
 <script type="text/javascript" src="{{ asset('js/3d-flip-book/js/libs/jquery.min.js') }}"></script>
 {{--  <script src="{{ asset('js/3d-flip-book/js/libs/html2canvas.min.js') }}" ></script> 

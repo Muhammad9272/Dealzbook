@@ -1,4 +1,6 @@
 @extends('master')
+
+@section('image',(isset($blog)?preg_replace('/\s+/','%20',$blog->image):''))
 @section('title', '— '.  $blog->seoTags->title  )
 @section('description', $blog->seoTags->description  )
 
