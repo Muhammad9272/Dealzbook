@@ -1,7 +1,7 @@
 @extends('master')
 @section('title', '— '.  $store->seoTags->title  )
 @section('description', $store->seoTags->description  )
-@section('image',(isset($store)?preg_replace('/\s+/','%20',$store->image):''))
+@section('image',($store?preg_replace('/\s+/','%20',$store->image):''))
 
 @section('pagelevel_scripts')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

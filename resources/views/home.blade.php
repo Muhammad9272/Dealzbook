@@ -2,7 +2,7 @@
 
 @section('title', ': ' . optional($page_description)->seo_title)
 @section('description', optional($page_description)->seo_description  )
-@section('image',(isset($banners)?preg_replace('/\s+/','%20',$banners->first()->image):''))
+@section('image',($banners->count()>0?preg_replace('/\s+/','%20',$banners->first()->image):''))
 
 @section('content')
 

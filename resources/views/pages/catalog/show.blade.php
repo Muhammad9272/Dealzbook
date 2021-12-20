@@ -1,7 +1,7 @@
 @extends('master')
 @section('title', '— '.  $catalog->seoTags->title  )
 @section('description', $catalog->seoTags->description  )
-@section('image',(isset($catalog)?preg_replace('/\s+/','%20',$catalog->images()->where('featured',1)->first()->image):''))
+@section('image',($catalog?preg_replace('/\s+/','%20',$catalog->images()->where('featured',1)->first()->image):''))
 @section('content')
 <script type="text/javascript" src="{{ asset('js/3d-flip-book/js/libs/jquery.min.js') }}"></script>
 {{--  <script src="{{ asset('js/3d-flip-book/js/libs/html2canvas.min.js') }}" ></script> 
@@ -232,7 +232,7 @@
                   <div class="col-6 col-sm-4">
                      <p class="catalogDate fontMada">
                         {{ \Carbon\Carbon::parse($catalog->created_at)->day }}
-                        {{ \Carbon\Carbon::parse($catalog->created_at)->subMonth()->format('F') }}
+                        {{ \Carbon\Carbon::parse($catalog->created_at)->format('F') }}
                         {{ \Carbon\Carbon::parse($catalog->created_at)->subYear()->format('Y') }}
                      </p>
                      <p class="darkGray fontMada">
@@ -243,7 +243,7 @@
                      <p class="catalogDate fontMada">
                         @if(session('locale') == 'en')
                         {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
-                        {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
+                        {{ \Carbon\Carbon::parse($catalog->start_at)->format('F') }}
                         {{ \Carbon\Carbon::parse($catalog->start_at)->subYear()->format('Y') }} 
                         @else
                         {{ $catalog->start_at }}
@@ -257,7 +257,7 @@
                      <p class="catalogDate fontMada">
                         @if ($catalog->end_at && session('locale') == 'en')
                         {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
-                        {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
+                        {{ \Carbon\Carbon::parse($catalog->end_at)->format('F') }}
                         {{ \Carbon\Carbon::parse($catalog->end_at)->subYear()->format('Y') }}
                         @else
                         {{ $catalog->end_at }}
@@ -396,7 +396,7 @@
                <div class="col-sm-4">
                   <p class="catalogDate">
                      {{ \Carbon\Carbon::parse($catalog->created_at)->day }}
-                     {{ \Carbon\Carbon::parse($catalog->created_at)->subMonth()->format('F') }}
+                     {{ \Carbon\Carbon::parse($catalog->created_at)->format('F') }}
                      {{ \Carbon\Carbon::parse($catalog->created_at)->subYear()->format('Y') }}
                   </p>
                   <p class="darkGray fontMada">
@@ -407,7 +407,7 @@
                   <p class="catalogDate">
                      @if(session('locale') == 'en')
                      {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
-                     {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
+                     {{ \Carbon\Carbon::parse($catalog->start_at)->format('F') }}
                      {{ \Carbon\Carbon::parse($catalog->start_at)->subYear()->format('Y') }} 
                      @else
                      {{ $catalog->start_at }}
@@ -421,7 +421,7 @@
                   <p class="catalogDate">
                      @if ($catalog->end_at && session('locale') == 'en')
                      {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
-                     {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
+                     {{ \Carbon\Carbon::parse($catalog->end_at)->format('F') }}
                      {{ \Carbon\Carbon::parse($catalog->end_at)->subYear()->format('Y') }}
                      @else
                      {{ $catalog->end_at }}
@@ -661,7 +661,7 @@
                   <div class="col-sm-4">
                      <p class="catalogDate fontMada">
                         {{ \Carbon\Carbon::parse($catalog->created_at)->day }}
-                        {{ \Carbon\Carbon::parse($catalog->created_at)->subMonth()->format('F') }}
+                        {{ \Carbon\Carbon::parse($catalog->created_at)->format('F') }}
                         {{ \Carbon\Carbon::parse($catalog->created_at)->subYear()->format('Y') }}
                      </p>
                      <p class="darkGray fontMada">
@@ -672,7 +672,7 @@
                      <p class="catalogDate fontMada">
                         @if(session('locale') == 'en')
                         {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
-                        {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
+                        {{ \Carbon\Carbon::parse($catalog->start_at)->format('F') }}
                         {{ \Carbon\Carbon::parse($catalog->start_at)->subYear()->format('Y') }} 
                         @else
                         {{ $catalog->start_at }}
@@ -686,7 +686,7 @@
                      <p class="catalogDate fontMada">
                         @if ($catalog->end_at && session('locale') == 'en')
                         {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
-                        {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
+                        {{ \Carbon\Carbon::parse($catalog->end_at)->format('F') }}
                         {{ \Carbon\Carbon::parse($catalog->end_at)->subYear()->format('Y') }}
                         @else
                         {{ $catalog->end_at }}
@@ -792,7 +792,7 @@
                <div class="col-sm-4">
                   <p class="catalogDate">
                      {{ \Carbon\Carbon::parse($catalog->created_at)->day }}
-                     {{ \Carbon\Carbon::parse($catalog->created_at)->subMonth()->format('F') }}
+                     {{ \Carbon\Carbon::parse($catalog->created_at)->format('F') }}
                      {{ \Carbon\Carbon::parse($catalog->created_at)->subYear()->format('Y') }}
                   </p>
                   <p class="darkGray fontMada">
@@ -803,7 +803,7 @@
                   <p class="catalogDate">
                      @if(session('locale') == 'en')
                      {{ \Carbon\Carbon::parse($catalog->start_at)->day }}
-                     {{ \Carbon\Carbon::parse($catalog->start_at)->subMonth()->format('F') }}
+                     {{ \Carbon\Carbon::parse($catalog->start_at)->format('F') }}
                      {{ \Carbon\Carbon::parse($catalog->start_at)->subYear()->format('Y') }} 
                      @else
                      {{ $catalog->start_at }}
@@ -817,7 +817,7 @@
                   <p class="catalogDate">
                      @if ($catalog->end_at && session('locale') == 'en')
                      {{ \Carbon\Carbon::parse($catalog->end_at)->day }}
-                     {{ \Carbon\Carbon::parse($catalog->end_at)->subMonth()->format('F') }}
+                     {{ \Carbon\Carbon::parse($catalog->end_at)->format('F') }}
                      {{ \Carbon\Carbon::parse($catalog->end_at)->subYear()->format('Y') }}
                      @else
                      {{ $catalog->end_at }}
