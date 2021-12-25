@@ -20,22 +20,7 @@
                                 </div>                        
                             </div>
 
-                            {{-- <div class="form-group">
-                                <label class="col-md-3 control-label" >Seo Title</label>
-                                <div class="col-md-8 d-inline-flex">
-                                    <input type="text" class="form-control"  value="{{$data->seoTags->title}}" name="seo_title">  
-               
-                                </div>                        
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" >Seo Description</label>
-                                <div class="col-md-8 d-inline-flex">
-                                    <textarea name="seo_description"  class="nic-simple form-control" style="width: 100%;">
-                                        {!! $data->seoTags->description !!}
-                                    </textarea>
-               
-                                </div>                        
-                            </div> --}}
+
 
                             <div class="form-group">
                                 <label class="col-md-3 control-label" >Opening Hours</label>
@@ -55,6 +40,22 @@
                                 </div>                        
                             </div>
 
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" >Seo Title</label>
+                                <div class="col-md-8 d-inline-flex">
+                                    <input type="text" class="form-control"  value="{{$data->seoTags->title}}" name="seo_title">  
+               
+                                </div>                        
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" >Seo Description</label>
+                                <div class="col-md-8 d-inline-flex">
+                                    <textarea name="seo_description"  class="nic-simple form-control" style="width: 100%;">
+                                        {!! $data->seoTags->description !!}
+                                    </textarea>
+               
+                                </div>                        
+                            </div>
                             {{-- <div class="row">
                                 <div class="col-md-12">
 
@@ -87,23 +88,7 @@
                                 </div>                        
                             </div>
 
-                            {{-- <div class="form-group">
-                                <label class="col-md-3 control-label" >Seo Title</label>
-                                <div class="col-md-8 d-inline-flex">
-                                    <input type="text" class="form-control" value="{{$data->seoTags->getTranslation('title', 'ar')}}" name="arabic_seo_title" >  
-               
-                                </div>                        
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" >Seo Description</label>
-                                <div class="col-md-8 d-inline-flex">
-                                    <textarea name="arabic_seo_description" class="nic-simple form-control" style="width: 100%;">
-                                        {!! $data->seoTags->getTranslation('description', 'ar') !!}
-                                    </textarea>
-               
-                                </div>                        
-                            </div> --}}
-
+                            
                             <div class="form-group">
                                 <label class="col-md-3 control-label" >Opening Hours</label>
                                 <div class="col-md-8 d-inline-flex">
@@ -119,6 +104,22 @@
                                        
                                         {!! $data->getTranslation('address', 'ar') !!}
                                        
+                                    </textarea>
+               
+                                </div>                        
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" >Seo Title</label>
+                                <div class="col-md-8 d-inline-flex">
+                                    <input type="text" class="form-control" value="{{$data->seoTags->getTranslation('title', 'ar')}}" name="arabic_seo_title" >  
+               
+                                </div>                        
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" >Seo Description</label>
+                                <div class="col-md-8 d-inline-flex">
+                                    <textarea name="arabic_seo_description" class="nic-simple form-control" style="width: 100%;">
+                                        {!! $data->seoTags->getTranslation('description', 'ar') !!}
                                     </textarea>
                
                                 </div>                        

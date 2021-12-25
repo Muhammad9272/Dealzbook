@@ -151,13 +151,13 @@ class BranchController extends Controller
         * associate the seo tags with
         * the store's branch
         */
-        // $seoTags = new Seo;
-        // $seoTags->setTranslation('title', 'en', $request->seo_title);
-        // $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
-        // $seoTags->setTranslation('description', 'en', $request->seo_description);
-        // $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
+        $seoTags = new Seo;
+        $seoTags->setTranslation('title', 'en', $request->seo_title);
+        $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
+        $seoTags->setTranslation('description', 'en', $request->seo_description);
+        $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
 
-        // $branch->seoTags()->save($seoTags);
+        $branch->seoTags()->save($seoTags);
 
         // add the page description
         // $page = new Page;
@@ -257,13 +257,13 @@ class BranchController extends Controller
         /*
         * update the store's seo tags
         */
-        // $seoTags = $branch->seoTags;
-        // $seoTags->setTranslation('title', 'en', $request->seo_title);
-        // $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
-        // $seoTags->setTranslation('description', 'en', $request->seo_description);
-        // $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
+        $seoTags = $branch->seoTags;
+        $seoTags->setTranslation('title', 'en', $request->seo_title);
+        $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
+        $seoTags->setTranslation('description', 'en', $request->seo_description);
+        $seoTags->setTranslation('description', 'ar', $request->arabic_seo_description);
 
-        // $branch->seoTags()->save($seoTags);
+        $branch->seoTags()->save($seoTags);
 
         // //update the page description
         // $page = $branch->page;

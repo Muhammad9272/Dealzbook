@@ -36,8 +36,19 @@ return [
     'search' => 'Search',
     'branches_and_information' => 'Branches and information',
     'store_catalogs' => 'Store catalogs',
+    'branch_catalogs' => 'Branch catalogs',
     'store_catalogs_not_found' => 'Catalogs not found',
-    
+
+    'branch' => 'Branch',
+    'location' => 'Location',
+    'email'=>'Email',
+    'website_link'=>'Website link',
+    'facebook_link'=>'Facbook link',
+    'twitter_link'=>'Twitter Link',
+    'instagram_link'=>'Instagram Link',
+    'youtube_link'=>'Youtube Link',
+    'maps_directions'=>'MAP & DIRECTIONS',
+
     'store' => 'Store',
     'find_your_favorite_stores_offers_on_dealzbook' => 'Find your favorite store\'s offers on DealzBook',
     'sort_by' => 'Sort by',

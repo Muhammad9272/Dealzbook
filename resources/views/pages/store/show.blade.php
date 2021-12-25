@@ -394,8 +394,9 @@
                                                 <h5 class="mb-0 @if(session('locale') == 'ar') textAlignRight @endif">
 
                                                     <p class="content" style="font-size: 15px">
-
+                                                    <a href="/{{session('locale')}}/{{$store->slug}}/{{$branch->city->slug}}/{{$branch->slug}}" >
                                                         {{ ucfirst($branch->name) }}
+                                                    </a>
 
                                                     </p>
                                                 </h5>

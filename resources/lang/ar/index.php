@@ -36,6 +36,7 @@ return [
     'search' => 'البحث',
     'branches_and_information' => 'الفروع والمعلومات',
     'store_catalogs' => 'عروض المتجر',
+    'branch_catalogs' => 'كتالوجات الفروع  ',
     'store_catalogs_not_found' => 'الكتالوجات غير موجودة',
     'store' => 'متجر',
     'find_your_favorite_stores_offers_on_dealzbook' => 'ابحث عن عروض متجرك المفضل على',
@@ -78,5 +79,16 @@ return [
     'added_on'=>'تاريخ الإضافة ',
     'start_date'=>'بداية العرض ',
     'end_date'=>'تاريخ الانتهاء ',
+     
+    'branch'=>'فرع  ',
+    'location'=>'موقعك ',
+    'email'=>'البريد الإلكتروني  ',
+    'website_link'=>' رابط الموقع ',
+    'facebook_link'=>'رابط الفيسبوك ',
+    'twitter_link'=>'رابط تويتر  ',
+    'instagram_link'=>'رابط Instagram  ',
+    'youtube_link'=>'رابط يوتيوب  ',
+    'maps_directions'=>'الخريطة والاتجاهات  ',
+
 
 ];

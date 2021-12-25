@@ -20,21 +20,7 @@
                                 </div>                        
                             </div>
 
-                            {{-- <div class="form-group">
-                                <label class="col-md-3 control-label" >Seo Title</label>
-                                <div class="col-md-8 d-inline-flex">
-                                    <input type="text" class="form-control"  name="seo_title">  
-               
-                                </div>                        
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" >Seo Description</label>
-                                <div class="col-md-8 d-inline-flex">
-                                    <textarea name="seo_description" class="nic-simple form-control" style="width: 100%;">
-                                    </textarea>
-               
-                                </div>                        
-                            </div> --}}
+
 
                             <div class="form-group">
                                 <label class="col-md-3 control-label" >Opening Hours</label>
@@ -48,6 +34,21 @@
                                 <label class="col-md-3 control-label" >Address</label>
                                 <div class="col-md-8 d-inline-flex">
                                     <textarea name="address" class="nic-simple form-control" style="width: 100%;" required="">
+                                    </textarea>
+               
+                                </div>                        
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" >Seo Title</label>
+                                <div class="col-md-8 d-inline-flex">
+                                    <input type="text" class="form-control"  name="seo_title">  
+               
+                                </div>                        
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" >Seo Description</label>
+                                <div class="col-md-8 d-inline-flex">
+                                    <textarea name="seo_description" class="form-control" style="width: 100%;">
                                     </textarea>
                
                                 </div>                        
@@ -78,21 +79,7 @@
                                 </div>                        
                             </div>
 
-                            {{-- <div class="form-group">
-                                <label class="col-md-3 control-label" >Seo Title</label>
-                                <div class="col-md-8 d-inline-flex">
-                                    <input type="text" class="form-control"  name="arabic_seo_title" >  
-               
-                                </div>                        
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" >Seo Description</label>
-                                <div class="col-md-8 d-inline-flex">
-                                    <textarea name="arabic_seo_description" class="nic-simple form-control" style="width: 100%;">
-                                    </textarea>
-               
-                                </div>                        
-                            </div> --}}
+
 
                             <div class="form-group">
                                 <label class="col-md-3 control-label" >Opening Hours</label>
@@ -106,6 +93,22 @@
                                 <label class="col-md-3 control-label" >Address</label>
                                 <div class="col-md-8 d-inline-flex">
                                     <textarea name="arabic_address" class="nic-simple form-control" style="width: 100%;" required="">
+                                    </textarea>
+               
+                                </div>                        
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" >Seo Title</label>
+                                <div class="col-md-8 d-inline-flex">
+                                    <input type="text" class="form-control"  name="arabic_seo_title" >  
+               
+                                </div>                        
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" >Seo Description</label>
+                                <div class="col-md-8 d-inline-flex">
+                                    <textarea name="arabic_seo_description" class=" form-control" style="width: 100%;">
                                     </textarea>
                
                                 </div>                        

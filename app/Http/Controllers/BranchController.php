@@ -90,7 +90,7 @@ class BranchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Store $store, City $city, Branch $branch)
+    public function show($lang,Store $store, City $city, Branch $branch)
     {
         return view('pages.branch.show',[
             'store' => $store,

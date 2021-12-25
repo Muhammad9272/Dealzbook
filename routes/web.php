@@ -68,15 +68,6 @@ Route::group([
     // Route::get('/store/{store}/branches', 'StoreController@storeBranches')->name('all.stores');
 
 
-
-  // Route::get('/mall/datatables', 'MallController@datatables')->name('admin-mall-datatables'); //JSON REQUEST
-  // Route::get('/mall', 'MallController@index')->name('admin-mall-index');
-  // Route::get('/mall/create', 'MallController@create')->name('admin-mall-create');
-  // Route::post('/mall/create', 'MallController@store')->name('admin-mall-store');
-  // Route::get('/mall/edit/{id}', 'MallController@edit')->name('admin-mall-edit');
-  // Route::post('/mall/edit/{id}', 'MallController@update')->name('admin-mall-update');
-
-
     
 
   Route::get('/branch/datatables', 'BranchController@datatables')->name('admin-branch-datatables'); //JSON REQUEST
@@ -343,7 +334,7 @@ Route::get('/tag/{tag}', 'TagController@show');
 
 Route::get('/store/{store}/catalogs', 'StoreController@showCatalogs');
 
-Route::get('/{store}/{city}/{branch}', 'BranchController@show');
+Route::get('/{lang}/{store}/{city}/{branch}', 'BranchController@show');
 
 
 
@@ -361,4 +352,4 @@ Route::get('/language/{language}', 'LanguageController@setLanguage');
 //
 
 
-Route::get('/{city}/{mall}', 'MallController@show');
+// Route::get('/{city}/{mall}', 'MallController@show');
