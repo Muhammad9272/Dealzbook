@@ -538,7 +538,9 @@
                <div class="card-body">
                   <h5 class="mb-0 @if(session('locale') == 'ar') textAlignRight @endif">
                      <p class="content" style="font-size: 15px">
-                        {{ ucfirst($branch->name) }}
+                       <a style="color: white" href="/{{session('locale')}}/{{$store->slug}}/{{$branch->city->slug}}/{{$branch->slug}}" >
+                          {{ ucfirst($branch->name) }}
+                        </a>
                      </p>
                   </h5>
                   <div id="{{$branch->slug}}">

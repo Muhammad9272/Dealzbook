@@ -5,7 +5,7 @@
 
     <h2 class="text-3xl mt-8 @if(session('locale') == 'ar') textAlignRight @endif">{{ trans('index.branch_catalogs')}}</h2>
 
-  @foreach ($catalogs as $catalog)
+
     <div class="row">
         @foreach ($catalogs as $catalog)
                 <div class="col-6 col-sm-3">
@@ -72,7 +72,7 @@
         @endforeach
 
     </div>
-  @endforeach
+
 </div>
 @endif
   

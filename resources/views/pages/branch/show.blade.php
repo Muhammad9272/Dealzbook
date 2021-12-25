@@ -1,7 +1,7 @@
 @extends('master')
 
-@section('title', '— '.  $branch->seoTags->title  )
-@section('description', $branch->seoTags->description  )
+@section('title', '— '.  ($branch->seoTags?$branch->seoTags->title:'') )
+@section('description', ($branch->seoTags?$branch->seoTags->description:'')  )
 @section('image',($store?preg_replace('/\s+/','%20',$store->image):''))
 
 @section('content')
