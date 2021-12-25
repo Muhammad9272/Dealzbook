@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" >Seo Title</label>
                                 <div class="col-md-8 d-inline-flex">
-                                    <input type="text" class="form-control"  value="{{$data->seoTags->title}}" name="seo_title">  
+                                    <input type="text" class="form-control"  value="{{$data->seoTags?$data->seoTags->title:''}}" name="seo_title">  
                
                                 </div>                        
                             </div>
@@ -51,7 +51,7 @@
                                 <label class="col-md-3 control-label" >Seo Description</label>
                                 <div class="col-md-8 d-inline-flex">
                                     <textarea name="seo_description"  class="nic-simple form-control" style="width: 100%;">
-                                        {!! $data->seoTags->description !!}
+                                        {!! $data->seoTags?$data->seoTags->description:'' !!}
                                     </textarea>
                
                                 </div>                        
@@ -111,7 +111,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" >Seo Title</label>
                                 <div class="col-md-8 d-inline-flex">
-                                    <input type="text" class="form-control" value="{{$data->seoTags->getTranslation('title', 'ar')}}" name="arabic_seo_title" >  
+                                    <input type="text" class="form-control" value="{{$data->seoTags?$data->seoTags->getTranslation('title', 'ar'):''}}" name="arabic_seo_title" >  
                
                                 </div>                        
                             </div>
@@ -119,7 +119,7 @@
                                 <label class="col-md-3 control-label" >Seo Description</label>
                                 <div class="col-md-8 d-inline-flex">
                                     <textarea name="arabic_seo_description" class="nic-simple form-control" style="width: 100%;">
-                                        {!! $data->seoTags->getTranslation('description', 'ar') !!}
+                                        {!! $data->seoTags?$data->seoTags->getTranslation('description', 'ar'):'' !!}
                                     </textarea>
                
                                 </div>                        
