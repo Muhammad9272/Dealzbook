@@ -41,7 +41,7 @@ class Branch extends Model
      * A branch have multiple catalogs
      */
     public function catalogs(){
-        return $this->belongsToMany(Catalog::class);
+        return $this->belongsToMany(Catalog::class)->latest();
     }
 
     /**
