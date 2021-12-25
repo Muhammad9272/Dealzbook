@@ -257,7 +257,12 @@ class BranchController extends Controller
         /*
         * update the store's seo tags
         */
-        $seoTags = $branch->seoTags;
+        
+        if($branch->seoTags){
+            $seoTags = $branch->seoTags;
+        }else{
+            $seoTags = new Seo;
+        }
         $seoTags->setTranslation('title', 'en', $request->seo_title);
         $seoTags->setTranslation('title', 'ar', $request->arabic_seo_title);
         $seoTags->setTranslation('description', 'en', $request->seo_description);
