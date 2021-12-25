@@ -964,11 +964,11 @@
             <div id="p__detail2{{$city->id}}" class="collapse " data-parent="#accordionExample">
                <div class="card-body">
                   <h5 class="mb-0 @if(session('locale') == 'ar') textAlignRight @endif">
-                     <a href="/{{$store->slug}}/{{$branch->city->slug}}/{{$branch->slug}}">
-                     <button class="btn btn-link">
-                     {{ ucfirst($branch->name) }}
-                     </button>
-                     </a>
+                       <p class="content" style="font-size: 15px">
+                       <a style="color: white" href="/{{session('locale')}}/{{$store->slug}}/{{$branch->city->slug}}/{{$branch->slug}}" >
+                          {{ ucfirst($branch->name) }}
+                        </a>
+                     </p>
                   </h5>
                   <div id="{{$branch->slug}}2">
                      <div class="card-body">
