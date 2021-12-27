@@ -5,11 +5,21 @@
 @section('image',($store?preg_replace('/\s+/','%20',$store->image):''))
 
 @section('content')
+<style type="text/css">
+    .table-responsive{
+        display: table !important;
+    }
+    @media (max-width: 767.98px) {
+        .table-responsive{
+            display: block !important;
+        }
+    }
+</style>
 
 <div class="container ">
     <div class="row storeInfo" style="margin-top:100px">
 
-        <div class="col-sm-4">
+        <div class="col-12 col-md-4">
 
             <div class="card">
                 <img class="w-full" src="{{$store->image}}" alt="Sunset in the mountains">
@@ -19,7 +29,7 @@
 
         {{--  store details  --}}
          @if(session('locale') == 'en')
-        <div class="col-sm-8">
+        <div class="col-12 col-md-8">
             <div class="card">
                 <div class="card-header">
                     <h2>{{$branch->name}}</h2>
@@ -27,7 +37,7 @@
                 </div>
                 <div class="card-body">
                       <p class="card-text">{!! $branch->about !!}</p>
-                      <table class="table table-hover">
+                      <table class="table table-hover table-responsive">
                         <thead>
                          
                         </thead>
@@ -110,7 +120,7 @@
             </div>
         </div>
         @else
-        <div class="col-sm-8">
+        <div class="col-12 col-md-8">
             <div class="card">
                 <div class="card-header" style="text-align:right;">
                     <h2>{{$branch->name}}</h2>
@@ -118,7 +128,7 @@
                 </div>
                 <div class="card-body">
                       <p class="card-text">{!! $branch->about !!}</p>
-                      <table class="table table-hover" style="text-align: right; direction: rtl;">
+                      <table class="table table-hover table-responsive" style="text-align: right; direction: rtl;">
                         <thead>
                          
                         </thead>

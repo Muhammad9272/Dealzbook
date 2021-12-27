@@ -56,7 +56,7 @@
                     <!-- check all stores end-->
                 @endif
 
-                <div class="col-sm-3 customContainers">
+                <div class="col-6 col-sm-3 customContainers">
                     <div class="cat-box-s">
 
                         @if($catalog->featured)
