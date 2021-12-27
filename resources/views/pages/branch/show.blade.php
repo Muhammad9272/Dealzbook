@@ -13,13 +13,16 @@
         .table-responsive{
             display: block !important;
         }
+        .mr-bttm{
+            margin-bottom: 20px;
+        }
     }
 </style>
 
 <div class="container ">
     <div class="row storeInfo" style="margin-top:100px">
 
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-4 mr-bttm">
 
             <div class="card">
                 <img class="w-full" src="{{$store->image}}" alt="Sunset in the mountains">
